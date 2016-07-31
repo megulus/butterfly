@@ -13,23 +13,11 @@ models.EmployeeMood = Backbone.Model.extend({
     }
 });
 
-models.Questions = Backbone.Model.extend({
-    questions: []
-});
-
 models.AllUserInput = Backbone.Model.extend({
-    questions: [],
-    userAnswers: {},
-    submitted: false
-});
-
-models.SingleUserInput = Backbone.Model.extend({
-    initialize: function(attributes, options) {
-        this.questionNum = options.questionNum;
-        this.question = options.question;
-        this.totalQuestions = options.totalQuestions;
-        this.rank = -1;
-        this.text = null;
-        //console.log(this.question, this.totalQuestions, this.rank);
+    defaults: {
+        questions: [],
+        userAnswers: {},
+        submitted: false,
+        questionsAnswered: 0
     }
 });

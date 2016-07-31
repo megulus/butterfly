@@ -19,11 +19,11 @@ var availableQuestions = [
 ];
 
 
-var allQuestionsModel = new models.AllUserInput();
+var allUserInput = new models.AllUserInput();
 
 // for now iterating through the array; later, can change this to randomize the order of questions
 for (var i = 0; i < availableQuestions.length; i++) {
-    allQuestionsModel.questions.push(availableQuestions[i]);
+    allUserInput.get('questions').push(availableQuestions[i]);
 }
 
 
@@ -36,11 +36,11 @@ var selectedMoodView = new views.SelectedMoodView({
 });
 var questionsView = new views.QuestionsView({
     el: $('#mood-questions'),
-    model: allQuestionsModel
+    model: allUserInput
 });
 var footerView = new views.FooterView({
     el: $('#footer'),
-    model: allQuestionsModel
+    model: allUserInput
 });
 
 
@@ -59,23 +59,14 @@ selectedMoodView.on('moodChanged', function (level) {
     });
 });
 
-questionsView.on('userRankUpdated', function (rank, userInputModel) {
-    userInputModel.set('rank', rank);
-    //userInputModel.set('text', textInput);
-    var questionNum = userInputModel.questionNum;
-    //console.log('question number: ' + questionNum);
-    if (!(allQuestionsModel.userAnswers[questionNum])) {
-        allQuestionsModel.userAnswers[questionNum] = userInputModel;
-    }
 
-});
 
 questionsView.on('userTextUpdated', function (textInput, userInputModel) {
     userInputModel.set('text', textInput);
     var questionNum = userInputModel.questionNum;
     //console.log('question number: ' + questionNum);
-    if (!(allQuestionsModel.userAnswers[questionNum])) {
-        allQuestionsModel.userAnswers[questionNum] = userInputModel;
+    if (!(allUserInput.get('userAnswers')[questionNum])) {
+        allUserInput.get('userAnswers')[questionNum] = userInputModel;
     }
 });
 

@@ -83,6 +83,7 @@ views.MoodSelectionView = Backbone.View.extend({
 });
 
 views.QuestionsView = Backbone.View.extend({
+    template: _.template('<p><button id="send" <%= disabled %>>Send</button></p>'),
     events: {
         'click #send': 'submit'
     },
@@ -95,22 +96,26 @@ views.QuestionsView = Backbone.View.extend({
         if (!(this.model.get('submitted'))) {
             this.$el.append('<h4>Your answers will always remain anonymous.</h4>' +
                 '<p>Do you agree with the following statements?</p><ul></ul>');
-            _.each(this.model.questions, function (question, index) {
-                var userModel = new models.SingleUserInput(null, {
-                    questionNum: index + 1,
-                    question: question,
-                    totalQuestions: that.model.questions.length
-                });
-                // Is it bad to have a view create a model?
-                var singleQuestionView = new views.SingleQuestionView({model: userModel, parent: that});
+            _.each(this.model.get('questions'), function (question, index) {
+                var singleQuestionView = new views.SingleQuestionView({model: that.model, parent: that, questionNum: index + 1});
                 singleQuestionView.render();
                 that.$el.append(singleQuestionView.$el);
             });
             this.$el.append('<h4>Anything to add?</h4>' +
                 '<p><input type="text" id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
-                '& Your answers will always remain anonymous."></p><p><button id="send">Send</button></p>');
+                '& Your answers will always remain anonymous."></p>');
+            var disabled;
+            if (this.allQuestionsAnswered()) {
+                disabled = "";
+            } else {
+                disabled = "disabled";
+            }
+            this.$el.append(this.template({disabled: disabled}));
         }
         return this;
+    },
+    allQuestionsAnswered: function() {
+        return (_.size(this.model.get('userAnswers') === this.model.get('questions').length));
     },
     submit: function () {
         var $input = $('#addl_input');
@@ -124,55 +129,73 @@ views.QuestionsView = Backbone.View.extend({
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<ul><%= question %></ul>'),
-    template1: _.template('<label><input type="radio" name="<%= name %>" value="<%= rank %>"<%= selected ? "checked":""%>>' +
-        '<%= rank %></label>'),
+    template1: _.template('<label><input type="radio" name="<%= name %>" value="<%= rating %>"<%= selected ? "checked":""%>>' +
+        '<%= rating %></label>'),
     template2: _.template('<p><input id="<%= id %>" value="<%= value %>" type="text"></p>'),
     events: {
-        'click input[type="radio"]': 'updateUserInput',
-        'mouseleave input[type="text"]': 'captureUserText'
+        'click input[type="radio"]': 'updateUserRating',
+        'mouseleave input[type="text"]': 'updateUserText'
     },
     initialize: function (options) {
         this.parent = options.parent;
-        this.listenTo(this.model, 'change', this.render)
+        this.questionNum = options.questionNum;
+        //this.listenTo(this.model, 'change', this.render)
     },
     render: function () {
-        console.log('rendering');
+        //console.log('rendering single question view');
         var that = this;
-        var userRank = parseInt(this.model.get('rank'));
         this.$el.html('');
-        this.$el.append(this.template0({question: this.model.question}));
+        this.$el.append(this.template0({question: this.model.get('questions')[this.questionNum - 1]}));
         this.$el.append('<p>');
-        var name = 'question_' + this.model.questionNum;
-        //console.log(name);
-        for (var i = 0; i < this.model.totalQuestions; i++) {
-            var selected = ((i + 1) === userRank);
-            //console.log(selected + ' ' + userRank + ' ' + i);
-            that.$el.append(that.template1({name: name, rank: i + 1, selected: selected}));
+        var name = 'question_' + this.questionNum;
+        var userRating;
+        if (this.model.get('userAnswers')[this.questionNum]) {
+            userRating = this.model.get('userAnswers')[this.questionNum]['rating'];
+        } else {
+            userRating = -1;
+        }
+        for (var i = 0; i < 5; i++) {
+            var selected = ((i + 1) === userRating);
+            //console.log(selected + ' ' + userRating + ' ' + i);
+            that.$el.append(that.template1({name: name, rating: i + 1, selected: selected}));
         }
         this.$el.append('</p');
-        if (userRank <= 2) {
+        if (userRating > 0 && userRating <= 2) {
             var value;
-            if (that.model.get('text')) {
-                value = that.model.get('text');
+            if (that.model.get('userAnswers')[this.questionNum]['text']) {
+                value = that.model.get('userAnswers')[this.questionNum]['text'];
             } else {
                 value = '';
             }
-            console.log('value: ' + value);
             that.$el.append(that.template2({id: name, value: value}));
         }
         return this;
     },
-    updateUserInput: function (event) {
+    updateUserRating: function (event) {
         //console.log('update user input');
         var $input = $(event.currentTarget);
-        var rank = $input.val();
-        this.parent.trigger('userRankUpdated', rank, this.model);
+        //console.log('rating: ' +  $input.val());
+        if (this.model.get('userAnswers')[this.questionNum]) {
+            this.model.get('userAnswers')[this.questionNum]['rating'] = parseInt($input.val());
+        } else {
+            this.model.get('userAnswers')[this.questionNum] = {'rating': parseInt($input.val())};
+        }
+        var questionsAnswered = this.model.get('questionsAnswered');
+        //console.log(this.model);
+        this.model.set('questionsAnswered', questionsAnswered + 1);
     },
-    captureUserText: function (event) {
+    updateUserText: function (event) {
         var $input = $(event.currentTarget);
         var textInput = $input.val();
-        console.log($input.val());
-        this.parent.trigger('userTextUpdated', textInput, this.model);
+        //console.log($input.val());
+        //this.parent.trigger('userTextUpdated', textInput, this.model);
+        if (this.model.get('userAnswers')[this.questionNum]) {
+            this.model.get('userAnswers')[this.questionNum]['text'] = textInput;
+        } else {
+            this.model.get('userAnswers')[this.questionNum] = {'text': textInput};
+        }
+        var questionsAnswered = this.model.get('questionsAnswered');
+        this.model.set('questionsAnswered', questionsAnswered + 1);
     }
 });
 

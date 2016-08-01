@@ -61,14 +61,6 @@ selectedMoodView.on('moodChanged', function (level) {
 
 
 
-questionsView.on('userTextUpdated', function (textInput, userInputModel) {
-    userInputModel.set('text', textInput);
-    var questionNum = userInputModel.questionNum;
-    //console.log('question number: ' + questionNum);
-    if (!(allUserInput.get('userAnswers')[questionNum])) {
-        allUserInput.get('userAnswers')[questionNum] = userInputModel;
-    }
-});
 
 questionsView.on('submitted', function() {
     moodModel.set('submitted', true);

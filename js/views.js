@@ -110,17 +110,22 @@ views.QuestionsView = Backbone.View.extend({
             } else {
                 disabled = "disabled";
             }
+            //console.log('disabled: ' + disabled);
+            //console.log('all questions answered? ' + this.allQuestionsAnswered());
             this.$el.append(this.template({disabled: disabled}));
         }
         return this;
     },
     allQuestionsAnswered: function() {
-        return (_.size(this.model.get('userAnswers') === this.model.get('questions').length));
+        var size = _.size(this.model.get('userAnswers'));
+        var length = this.model.get('questions').length;
+        //console.log('size === length ' + (size === length));
+        return size === length;
     },
     submit: function () {
         var $input = $('#addl_input');
         var textInput = $input.val();
-        console.log(textInput);
+        //console.log(textInput);
         this.model.set('additionalInput', textInput);
         this.model.set('submitted', true);
         this.trigger('submitted');
@@ -188,7 +193,6 @@ views.SingleQuestionView = Backbone.View.extend({
         var $input = $(event.currentTarget);
         var textInput = $input.val();
         //console.log($input.val());
-        //this.parent.trigger('userTextUpdated', textInput, this.model);
         if (this.model.get('userAnswers')[this.questionNum]) {
             this.model.get('userAnswers')[this.questionNum]['text'] = textInput;
         } else {

@@ -16,7 +16,7 @@ views.FooterView = Backbone.View.extend({
     render: function () {
         if (this.model.get('submitted')) {
             this.$el.html("<p>Butterfly. Feedback is a gift.</p>" +
-                "<p>&copy; 2015 AnonyMessenger, Inc.</p><a href='https://butterfly.ai'>butterflyforce.com</a>");
+                "<p>&copy; 2016 AnonyMessenger, Inc.</p><a href='https://butterfly.ai'>butterfly.ai</a>");
         } else {
             this.$el.html("<p>Butterfly. Your team's happiness manager.</p>" +
                 "<p>&copy; 2016 AnonyMessenger, Inc.</p><a href='https://butterfly.ai'>butterfly.ai</a>");
@@ -38,20 +38,25 @@ views.SelectedMoodView = Backbone.View.extend({
     render: function () {
         this.$el.html('');
         if (!(this.model.get('submitted'))) {
-            console.log('selected mood view - not submitted');
-            this.$el.html(this.template({
-                symbol: this.model.get('symbol'),
-                label: this.model.get('label')
-            }));
+            if (this.model.get('symbol') && this.model.get('label')) {
+                this.$el.html(this.template({
+                    symbol: this.model.get('symbol'),
+                    label: this.model.get('label')
+                }));
+            } else {
+                var moodSelectionView = new views.MoodSelectionView({model: this.model, parent: this});
+                moodSelectionView.render();
+                this.$el.html(moodSelectionView.$el);
+            }
         }
         return this;
     },
     editMood: function () {
-        var moodSelectionView = new views.MoodSelectionView({el: this.$el, model: this.model, parent: this});
-        moodSelectionView.render();
-        this.$el.append(moodSelectionView.$el);
+        this.model.unset('symbol');
+        this.model.unset('label');
     }
 });
+
 
 views.MoodSelectionView = Backbone.View.extend({
     template: _.template('<label>&nbsp;<input type="radio" name="mood" value="<%= name %>">' +
@@ -64,30 +69,34 @@ views.MoodSelectionView = Backbone.View.extend({
     },
     render: function () {
         var that = this;
-        this.$el.html('');
-        if (!(this.model.get('submitted'))) {
-            this.$el.html('<p>Did you make a mistake? Please select your correct mood.</p>');
-            _.each(this.model.availableLevels, function (level) {
-                var label = level.label;
-                var symbol = level.symbol;
-                var name = level.name;
-                that.$el.append(that.template({symbol: symbol, label: label, name: name}));
-            });
-        }
+        this.$el.html('<p>Did you make a mistake? Please select your correct mood.</p>');
+        _.each(this.model.availableLevels, function (level) {
+            var label = level.label;
+            var symbol = level.symbol;
+            var name = level.name;
+            that.$el.append(that.template({symbol: symbol, label: label, name: name}));
+        });
         return this;
     },
     selectMood: function (event) {
         var $input = $(event.currentTarget);
-        this.parent.trigger('moodChanged', $input.val());
+        var level = $input.val();
+        var symbol = this.model.availableLevels[level].symbol;
+        var label = this.model.availableLevels[level].label;
+        this.model.set({
+            symbol: symbol,
+            label: label
+        });
     }
 });
+
 
 views.QuestionsView = Backbone.View.extend({
     template: _.template('<p><button id="send" <%= disabled %>>Send</button></p>'),
     events: {
         'click #send': 'submit'
     },
-    initialize: function() {
+    initialize: function () {
         this.listenTo(this.model, 'change', this.render);
     },
     render: function () {
@@ -97,7 +106,11 @@ views.QuestionsView = Backbone.View.extend({
             this.$el.append('<h4>Your answers will always remain anonymous.</h4>' +
                 '<p>Do you agree with the following statements?</p><ul></ul>');
             _.each(this.model.get('questions'), function (question, index) {
-                var singleQuestionView = new views.SingleQuestionView({model: that.model, parent: that, questionNum: index + 1});
+                var singleQuestionView = new views.SingleQuestionView({
+                    model: that.model,
+                    parent: that,
+                    questionNum: index + 1
+                });
                 singleQuestionView.render();
                 that.$el.append(singleQuestionView.$el);
             });
@@ -110,27 +123,24 @@ views.QuestionsView = Backbone.View.extend({
             } else {
                 disabled = "disabled";
             }
-            //console.log('disabled: ' + disabled);
-            //console.log('all questions answered? ' + this.allQuestionsAnswered());
             this.$el.append(this.template({disabled: disabled}));
         }
         return this;
     },
-    allQuestionsAnswered: function() {
+    allQuestionsAnswered: function () {
         var size = _.size(this.model.get('userAnswers'));
         var length = this.model.get('questions').length;
-        //console.log('size === length ' + (size === length));
         return size === length;
     },
     submit: function () {
         var $input = $('#addl_input');
         var textInput = $input.val();
-        //console.log(textInput);
         this.model.set('additionalInput', textInput);
         this.model.set('submitted', true);
         this.trigger('submitted');
     }
 });
+
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<ul><%= question %></ul>'),
@@ -144,10 +154,8 @@ views.SingleQuestionView = Backbone.View.extend({
     initialize: function (options) {
         this.parent = options.parent;
         this.questionNum = options.questionNum;
-        //this.listenTo(this.model, 'change', this.render)
     },
     render: function () {
-        //console.log('rendering single question view');
         var that = this;
         this.$el.html('');
         this.$el.append(this.template0({question: this.model.get('questions')[this.questionNum - 1]}));
@@ -161,7 +169,6 @@ views.SingleQuestionView = Backbone.View.extend({
         }
         for (var i = 0; i < 5; i++) {
             var selected = ((i + 1) === userRating);
-            //console.log(selected + ' ' + userRating + ' ' + i);
             that.$el.append(that.template1({name: name, rating: i + 1, selected: selected}));
         }
         this.$el.append('</p');
@@ -177,22 +184,18 @@ views.SingleQuestionView = Backbone.View.extend({
         return this;
     },
     updateUserRating: function (event) {
-        //console.log('update user input');
         var $input = $(event.currentTarget);
-        //console.log('rating: ' +  $input.val());
         if (this.model.get('userAnswers')[this.questionNum]) {
             this.model.get('userAnswers')[this.questionNum]['rating'] = parseInt($input.val());
         } else {
             this.model.get('userAnswers')[this.questionNum] = {'rating': parseInt($input.val())};
         }
         var questionsAnswered = this.model.get('questionsAnswered');
-        //console.log(this.model);
         this.model.set('questionsAnswered', questionsAnswered + 1);
     },
     updateUserText: function (event) {
         var $input = $(event.currentTarget);
         var textInput = $input.val();
-        //console.log($input.val());
         if (this.model.get('userAnswers')[this.questionNum]) {
             this.model.get('userAnswers')[this.questionNum]['text'] = textInput;
         } else {

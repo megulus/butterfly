@@ -4,7 +4,8 @@ var moodModel = new models.EmployeeMood();
 // set initial defaults:
 moodModel.set({
     symbol: ":-D",
-    label: 'Awesome!'
+    label: 'Awesome!',
+    submitted: false
 });
 
 //var questionModel = new models.Questions();
@@ -48,17 +49,6 @@ headerView.render();
 selectedMoodView.render();
 questionsView.render();
 footerView.render();
-
-selectedMoodView.on('moodChanged', function (level) {
-    var symbol = moodModel.availableLevels[level].symbol;
-    var label = moodModel.availableLevels[level].label;
-    moodModel.set({
-        symbol: symbol,
-        label: label,
-        submitted: false
-    });
-});
-
 
 
 

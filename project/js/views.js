@@ -28,7 +28,8 @@ views.FooterView = Backbone.View.extend({
 
 views.SelectedMoodView = Backbone.View.extend({
     template: _.template('<p><label><%= symbol %></label>&nbsp;<button id="edit">Edit</button></p>' +
-        '<p><h3><%= label %></h3></p>'),
+        '<p><h3><%= label %></h3></p>' +
+        '<p>THANK YOU FOR YOUR FEEDBACK</p>'),
     events: {
         'click #edit': 'editMood'
     },
@@ -48,6 +49,9 @@ views.SelectedMoodView = Backbone.View.extend({
                 moodSelectionView.render();
                 this.$el.html(moodSelectionView.$el);
             }
+        } else {
+            this.$el.html('<p>THANK YOU FOR THE EXTRA FEEDBACK</p>' +
+                '<h4>Have a nice day!</h4>')
         }
         return this;
     },

@@ -1,10 +1,21 @@
 "use strict";
 
+// TODO: get this from url params
+var v = '3';
+console.log(v);
+
 var moodModel = new models.EmployeeMood();
-// set initial defaults:
-moodModel.set({
+
+
+// set model based on query params:
+/*moodModel.set({
     symbol: ":-D",
     label: 'Awesome!',
+    submitted: false
+});*/
+moodModel.set({
+    symbol: moodModel.availableLevels[v].symbol,
+    label: moodModel.availableLevels[v].label,
     submitted: false
 });
 
@@ -28,9 +39,7 @@ for (var i = 0; i < availableQuestions.length; i++) {
 }
 
 
-var headerView = new views.HeaderView({
-    el: $('#header')
-});
+
 var selectedMoodView = new views.SelectedMoodView({
     el: $('#mood-selection'),
     model: moodModel
@@ -45,7 +54,7 @@ var footerView = new views.FooterView({
 });
 
 
-headerView.render();
+
 selectedMoodView.render();
 questionsView.render();
 footerView.render();

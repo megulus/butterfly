@@ -1,5 +1,13 @@
 .idea
 .DS_Store
 
-bower_components/
+project/bower_components/
+node_modules/
+
+package.json
+
+js/router.js
+basicNodeServer.js
+
+project/layout.html
 

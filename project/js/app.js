@@ -26,16 +26,24 @@ var availableQuestions = [
     'I like my work environment, and I believe it helps me perform at my best.',
     'My direct manager gives me necessary support and clear objectives.'
 ];
-
+// function to shuffle array (implementation of Fisher-Yates)
+var shuffle = function(array) {
+    var j = 0,
+        temp = null;
+    for (var i = array.length - 1; i > 0; i -= 1) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+};
+shuffle(availableQuestions);
 
 var allUserInput = new models.AllUserInput();
-
-// for now iterating through the array; later, can change this to randomize the order of questions
+// iterate through randomized availableQuestions array and add to allUserInput model:
 for (var i = 0; i < availableQuestions.length; i++) {
     allUserInput.get('questions').push(availableQuestions[i]);
 }
-
-
 
 var selectedMoodView = new views.SelectedMoodView({
     el: $('#mood-selection'),

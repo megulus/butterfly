@@ -8,7 +8,8 @@ var params = _.object(_.compact(_.map(location.search.slice(1).split('&'), funct
 })));
 
 var getParam = function(obj) {
-    if (obj['v'] in ['1','2','3','4','5']) {
+    var acceptableValues = ['1','2','3','4','5'];
+    if (_.contains(acceptableValues, obj['v'])) {
         return obj['v'];
     } else {
         return '3';

@@ -1,25 +1,22 @@
 "use strict";
 
-// TODO: get this from url params
-var v = '3';
-console.log(v);
+// set model based on query params:
+var params = _.object(_.compact(_.map(location.search.slice(1).split('&'), function(item) {
+    if (item) {
+        return item.split('=');
+    }
+})));
+
+var v = params['v'];
 
 var moodModel = new models.EmployeeMood();
 
-
-// set model based on query params:
-/*moodModel.set({
-    symbol: ":-D",
-    label: 'Awesome!',
-    submitted: false
-});*/
 moodModel.set({
     symbol: moodModel.availableLevels[v].symbol,
     label: moodModel.availableLevels[v].label,
     submitted: false
 });
 
-//var questionModel = new models.Questions();
 
 // set the questions and the order in which they will be asked:
 var availableQuestions = [

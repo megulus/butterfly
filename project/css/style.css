@@ -1,0 +1,56 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+
+.header {
+    background-color: #006e77;
+}
+
+.main {
+    background-color: #00828c;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+.ltgrn-text {
+    color: #00e5cf;
+}
+
+.thanks {
+    font-size: 12px;
+}
+
+.qn-banner {
+    background-color: #00e5cf;
+    margin-bottom: 0;
+    font-size: 12px;
+}
+
+.qn-container {
+    background: #006e77;
+}
+
+.question {
+    margin: 5px;
+    background-color: #ffffff;
+}
+
+.question input {
+    color: #c3c3c3;
+}
+
+.question p {
+    color: #575757;
+}
+
+.addl-input {
+    background-color: #00e5cf;
+}
+
+.footer {
+    font-size: 10px;
+}

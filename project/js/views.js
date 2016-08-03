@@ -15,11 +15,11 @@ views.FooterView = Backbone.View.extend({
     },
     render: function () {
         if (this.model.get('submitted')) {
-            this.$el.html("<p>Butterfly. Feedback is a gift.</p>" +
-                "<p>&copy; 2016 AnonyMessenger, Inc.</p><a href='https://butterfly.ai'>butterfly.ai</a>");
+            this.$el.html("<div class='footer'><div class='white-text'><p>Butterfly. Feedback is a gift.</p>" +
+                "<p>&copy; 2016 AnonyMessenger, Inc.</p></div><a class='ltgrn-text' href='https://butterfly.ai'>butterfly.ai</a></div>");
         } else {
-            this.$el.html("<p>Butterfly. Your team's happiness manager.</p>" +
-                "<p>&copy; 2016 AnonyMessenger, Inc.</p><a href='https://butterfly.ai'>butterfly.ai</a>");
+            this.$el.html("<div class='footer'><div class='white-text'><p>Butterfly. Your team's happiness manager.</p>" +
+                "<p>&copy; 2016 AnonyMessenger, Inc.</p></div><a class='ltgrn-text' href='https://butterfly.ai'>butterfly.ai</a></div>");
         }
         return this;
     }
@@ -28,8 +28,8 @@ views.FooterView = Backbone.View.extend({
 
 views.SelectedMoodView = Backbone.View.extend({
     template: _.template('<p><label><%= symbol %></label>&nbsp;<button id="edit">Edit</button></p>' +
-        '<p><h3><%= label %></h3></p>' +
-        '<p>THANK YOU FOR YOUR FEEDBACK</p>'),
+        '<p><h5 class="white-text"><%= label %></h5></p>' +
+        '<p class="ltgrn-text thanks">THANK YOU FOR YOUR FEEDBACK</p>'),
     events: {
         'click #edit': 'editMood'
     },
@@ -107,8 +107,8 @@ views.QuestionsView = Backbone.View.extend({
         var that = this;
         this.$el.html('');
         if (!(this.model.get('submitted'))) {
-            this.$el.append('<h4>Your answers will always remain anonymous.</h4>' +
-                '<p>Do you agree with the following statements?</p><ul></ul>');
+            this.$el.append('<p class="qn-banner white-text">Your answers will always remain anonymous.</p>' +
+                '<p class="qn-container ltgrn-text">Do you agree with the following statements?</p>');
             _.each(this.model.get('questions'), function (question, index) {
                 var singleQuestionView = new views.SingleQuestionView({
                     model: that.model,
@@ -118,9 +118,9 @@ views.QuestionsView = Backbone.View.extend({
                 singleQuestionView.render();
                 that.$el.append(singleQuestionView.$el);
             });
-            this.$el.append('<h4>Anything to add?</h4>' +
+            this.$el.append('<div class="addl-input"><p class="white-text">Anything to add?</p>' +
                 '<p><input type="text" id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
-                '& Your answers will always remain anonymous."></p>');
+                '& Your answers will always remain anonymous."></p></div>');
             var disabled;
             if (this.allQuestionsAnswered()) {
                 disabled = "";
@@ -147,13 +147,18 @@ views.QuestionsView = Backbone.View.extend({
 
 
 views.SingleQuestionView = Backbone.View.extend({
-    template0: _.template('<ul><%= question %></ul>'),
+    template0: _.template('<p><%= question %></p>'),
     template1: _.template('<label><input type="radio" name="<%= name %>" value="<%= rating %>"<%= selected ? "checked":""%>>' +
         '<%= rating %></label>'),
-    template2: _.template('<p><input id="<%= id %>" value="<%= value %>" type="text"></p>'),
+    template2: _.template('<input id="<%= id %>" value="<%= value %>" type="text">'),
     events: {
         'click input[type="radio"]': 'updateUserRating',
         'mouseleave input[type="text"]': 'updateUserText'
+    },
+    attributes: function() {
+        return {
+            class: 'question'
+        }
     },
     initialize: function (options) {
         this.parent = options.parent;
@@ -162,8 +167,9 @@ views.SingleQuestionView = Backbone.View.extend({
     render: function () {
         var that = this;
         this.$el.html('');
+        //this.$el.append('<li>');
         this.$el.append(this.template0({question: this.model.get('questions')[this.questionNum - 1]}));
-        this.$el.append('<p>');
+        //this.$el.append('<p>');
         var name = 'question_' + this.questionNum;
         var userRating;
         if (this.model.get('userAnswers')[this.questionNum]) {
@@ -171,11 +177,12 @@ views.SingleQuestionView = Backbone.View.extend({
         } else {
             userRating = -1;
         }
+        this.$el.append('<p>');
         for (var i = 0; i < 5; i++) {
             var selected = ((i + 1) === userRating);
             that.$el.append(that.template1({name: name, rating: i + 1, selected: selected}));
         }
-        this.$el.append('</p');
+        this.$el.append('</p>');
         if (userRating > 0 && userRating <= 2) {
             var value;
             if (that.model.get('userAnswers')[this.questionNum]['text']) {
@@ -185,6 +192,7 @@ views.SingleQuestionView = Backbone.View.extend({
             }
             that.$el.append(that.template2({id: name, value: value}));
         }
+        //this.$el.append('</li>');
         return this;
     },
     updateUserRating: function (event) {

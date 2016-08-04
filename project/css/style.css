@@ -28,11 +28,7 @@ body {
     font-size: 12px;
 }
 
-.qn-banner {
-    background-color: #00e5cf;
-    margin-bottom: 0;
-    font-size: 12px;
-}
+
 
 .qn-container {
     background: #006e77;
@@ -58,3 +54,30 @@ body {
 .footer {
     font-size: 10px;
 }
+
+#smiley-box {
+    position: relative;
+    width: 130px;
+    height: 120px;
+}
+
+#smiley {
+    position: absolute;
+    left: 10px;
+    z-index: 10;
+}
+
+#edit {
+    position: absolute;
+    top: 40px;
+    left: 75px;
+}
+
+
+.qn-banner {
+    background-color: #00e5cf;
+    font-size: 12px;
+}
+
+
+

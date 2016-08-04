@@ -20,7 +20,7 @@ var v = getParam(params);
 var moodModel = new models.EmployeeMood();
 
 moodModel.set({
-    symbol: moodModel.availableLevels[v].symbol,
+    imgPath: moodModel.availableLevels[v].imgPath,
     label: moodModel.availableLevels[v].label,
     submitted: false
 });

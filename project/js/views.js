@@ -2,12 +2,6 @@
 
 var views = {};
 
-/*views.HeaderView = Backbone.View.extend({
-    render: function () {
-        this.$el.html('<p><a href="https://support.butterfly.ai" target="_blank"><img src="../images/BG.png"></a>' +
-            '<h3>Butterfly Inc.</h3></p>');
-    }
-});*/
 
 views.FooterView = Backbone.View.extend({
     initialize: function () {
@@ -27,9 +21,10 @@ views.FooterView = Backbone.View.extend({
 
 
 views.SelectedMoodView = Backbone.View.extend({
-    template: _.template('<p><label><%= symbol %></label>&nbsp;<button id="edit">Edit</button></p>' +
-        '<p><h5 class="white-text"><%= label %></h5></p>' +
-        '<p class="ltgrn-text thanks">THANK YOU FOR YOUR FEEDBACK</p>'),
+    template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= imgPath %>"><img id="edit" src="images/Edit.png"></div>'+
+            //'<div class="row"><div class="col-md-4">Grump</div></div>'),
+        '<div class="row"><div class="col-md-8"><p><h5 class="white-text"><%= label %></h5></p>'
+       + '<p class="ltgrn-text thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
     events: {
         'click #edit': 'editMood'
     },
@@ -39,10 +34,11 @@ views.SelectedMoodView = Backbone.View.extend({
     render: function () {
         this.$el.html('');
         if (!(this.model.get('submitted'))) {
-            if (this.model.get('symbol') && this.model.get('label')) {
+            if (this.model.get('imgPath') && this.model.get('label')) {
                 this.$el.html(this.template({
-                    symbol: this.model.get('symbol'),
-                    label: this.model.get('label')
+                    imgPath: this.model.get('imgPath'),
+                    label: this.model.get('label'),
+                    alt: this.model.get('alt')
                 }));
             } else {
                 var moodSelectionView = new views.MoodSelectionView({model: this.model, parent: this});
@@ -56,7 +52,7 @@ views.SelectedMoodView = Backbone.View.extend({
         return this;
     },
     editMood: function () {
-        this.model.unset('symbol');
+        this.model.unset('imgPath');
         this.model.unset('label');
     }
 });
@@ -107,8 +103,8 @@ views.QuestionsView = Backbone.View.extend({
         var that = this;
         this.$el.html('');
         if (!(this.model.get('submitted'))) {
-            this.$el.append('<p class="qn-banner white-text">Your answers will always remain anonymous.</p>' +
-                '<p class="qn-container ltgrn-text">Do you agree with the following statements?</p>');
+            this.$el.append('<div class="qn-banner"><p class="white-text">Your answers will always remain anonymous.</p></div>' +
+                '<div><p class="qn-container ltgrn-text">Do you agree with the following statements?</p></div>');
             _.each(this.model.get('questions'), function (question, index) {
                 var singleQuestionView = new views.SingleQuestionView({
                     model: that.model,

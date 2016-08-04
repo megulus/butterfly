@@ -2,12 +2,12 @@
 
 var views = {};
 
-views.HeaderView = Backbone.View.extend({
+/*views.HeaderView = Backbone.View.extend({
     render: function () {
-        this.$el.html('<p><a href="https://support.butterfly.ai" target="_blank"><button>Logo</button>' +
-            '</a><h3>Butterfly Inc.</h3></p>');
+        this.$el.html('<p><a href="https://support.butterfly.ai" target="_blank"><img src="../images/BG.png"></a>' +
+            '<h3>Butterfly Inc.</h3></p>');
     }
-});
+});*/
 
 views.FooterView = Backbone.View.extend({
     initialize: function () {

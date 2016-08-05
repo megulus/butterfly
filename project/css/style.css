@@ -3,6 +3,16 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+textarea {
+    width: 95%;
+    height: 50px;
+    border-radius: 3px;
+    font-size: 10px;
+    text-align: center;
+    border: 1px solid #c3c3c3;
+    resize: none;
+}
+
 
 .header {
     background-color: #006e77;
@@ -42,11 +52,15 @@ body {
 .qn-container {
     background: #006e77;
     padding: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .question {
     margin: 5px;
     background-color: #ffffff;
+    border-radius: 3px;
+    padding: 10px 10px;
 }
 
 .question input {
@@ -55,11 +69,16 @@ body {
 
 .question p {
     color: #575757;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .addl-input {
     background-color: #00e5cf;
     margin: 0 5px;
+    border-radius: 3px;
+    padding: 10px 10px;
 }
 
 .footer {
@@ -104,6 +123,8 @@ body {
     font-size: 12px;
     width: 100%;
     height: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 .triangle {
@@ -112,6 +133,10 @@ body {
     left: 47.5%;
     width: 20px;
     height: 20px;
+}
+
+.title {
+    padding: 5px 0;
 }
 
 

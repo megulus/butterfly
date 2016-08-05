@@ -30,7 +30,7 @@ moodModel.set({
 var availableQuestions = [
     'I am satisfied with my roles and responsibilities.',
     'I feel like I have a healthy work/life balance.',
-    'I feel comfortable working and interaction with the colleagues on my team.',
+    'I feel comfortable working and interacting with the colleagues on my team.',
     'I like my work environment, and I believe it helps me perform at my best.',
     'My direct manager gives me necessary support and clear objectives.'
 ];

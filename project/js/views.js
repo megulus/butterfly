@@ -103,7 +103,7 @@ views.QuestionsView = Backbone.View.extend({
         this.$el.html('');
         if (!(this.model.get('submitted'))) {
             this.$el.append('<div class="banner-box"><div class="triangle"><img src="images/Triangle.png"></div><div class="qn-banner"><p class="white-text">Your answers will always remain anonymous.</p></div></div>' +
-                '<div><p class="qn-container ltgrn-text">Do you agree with the following statements?</p></div>');
+                '<div class="title"><p class="qn-container ltgrn-text">Do you agree with the following statements:</p></div>');
             _.each(this.model.get('questions'), function (question, index) {
                 var singleQuestionView = new views.SingleQuestionView({
                     model: that.model,
@@ -114,8 +114,8 @@ views.QuestionsView = Backbone.View.extend({
                 that.$el.append(singleQuestionView.$el);
             });
             this.$el.append('<div class="addl-input"><p class="white-text">Anything to add?</p>' +
-                '<p><input type="text" id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
-                '& Your answers will always remain anonymous."></p></div>');
+                '<p><textarea id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
+                '& Your answers will always remain anonymous."></textarea></p></div>');
             var disabled;
             if (this.allQuestionsAnswered()) {
                 disabled = "";
@@ -145,10 +145,10 @@ views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<p><%= question %></p>'),
     template1: _.template('<label><input type="radio" name="<%= name %>" value="<%= rating %>"<%= selected ? "checked":""%>>' +
         '<%= rating %></label>'),
-    template2: _.template('<input id="<%= id %>" value="<%= value %>" type="text">'),
+    template2: _.template('<textarea id="<%= id %>" value="<%= value %>" type="text">'),
     events: {
         'click input[type="radio"]': 'updateUserRating',
-        'mouseleave input[type="text"]': 'updateUserText'
+        'mouseleave textarea': 'updateUserText'
     },
     attributes: function() {
         return {

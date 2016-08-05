@@ -41,6 +41,7 @@ body {
 
 .qn-container {
     background: #006e77;
+    padding: 0;
 }
 
 .question {
@@ -58,6 +59,7 @@ body {
 
 .addl-input {
     background-color: #00e5cf;
+    margin: 0 5px;
 }
 
 .footer {
@@ -88,6 +90,7 @@ body {
 .qn-banner {
     background-color: #00e5cf;
     font-size: 12px;
+    width: 100%;
 }
 
 

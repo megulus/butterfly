@@ -23,8 +23,8 @@ views.FooterView = Backbone.View.extend({
 views.SelectedMoodView = Backbone.View.extend({
     template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= imgPath %>"><img id="edit" src="images/Edit.png"></div>'+
             //'<div class="row"><div class="col-md-4">Grump</div></div>'),
-        '<div class="row"><div class="col-md-8"><p><h5 class="white-text"><%= label %></h5></p>'
-       + '<p class="ltgrn-text thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
+        '<div class="row mood-text-box"><div class="col-md-8" id="mood-text"><p><h5 class="white-text"><%= label %></h5></p>'
+       + '<p class="ltgrn-text" id="thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
     events: {
         'click #edit': 'editMood'
     },

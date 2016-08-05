@@ -24,11 +24,20 @@ body {
     color: #00e5cf;
 }
 
-.thanks {
+#thanks {
     font-size: 12px;
 }
 
+.mood-text-box {
+    display: block;
+    margin-bottom: 15px;
+}
 
+#mood-text {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
 
 .qn-container {
     background: #006e77;
@@ -56,9 +65,11 @@ body {
 }
 
 #smiley-box {
+    display: inline-block;
     position: relative;
     width: 130px;
-    height: 120px;
+    height: 100px;
+    margin-top: 20px;
 }
 
 #smiley {

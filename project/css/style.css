@@ -87,11 +87,31 @@ body {
 }
 
 
+.banner-box {
+    position: relative;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    background-color: #00828c;
+    height: 35px;
+}
+
+
 .qn-banner {
+    position: absolute;
+    top: 15px;
+    left: 0;
     background-color: #00e5cf;
     font-size: 12px;
     width: 100%;
+    height: 20px;
 }
 
+.triangle {
+    position: absolute;
+    top: 0;
+    left: 47.5%;
+    width: 20px;
+    height: 20px;
+}
 
 

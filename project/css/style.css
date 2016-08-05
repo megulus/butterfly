@@ -139,4 +139,9 @@ textarea {
     padding: 5px 0;
 }
 
+.send-button {
+    max-height: 30px;
+    width: auto;
+    margin: 20px auto;
+}
 

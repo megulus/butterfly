@@ -9,11 +9,11 @@ views.FooterView = Backbone.View.extend({
     },
     render: function () {
         if (this.model.get('submitted')) {
-            this.$el.html("<div class='footer'><div class='white-text'><p>Butterfly. Feedback is a gift.</p>" +
-                "<p>&copy; 2016 AnonyMessenger, Inc.</p></div><a class='ltgrn-text' href='https://butterfly.ai'>butterfly.ai</a></div>");
+            this.$el.html("<div class='footer'><div class='white-text'><p>Butterfly. Feedback is a gift." +
+                "<br>&copy; 2016 AnonyMessenger, Inc.</p></div><a class='ltgrn-text' href='https://butterfly.ai'>butterfly.ai</a></div>");
         } else {
-            this.$el.html("<div class='footer'><div class='white-text'><p>Butterfly. Your team's happiness manager.</p>" +
-                "<p>&copy; 2016 AnonyMessenger, Inc.</p></div><a class='ltgrn-text' href='https://butterfly.ai'>butterfly.ai</a></div>");
+            this.$el.html("<div class='footer'><div class='white-text'><p>Butterfly. Your team's happiness manager." +
+                "<br>&copy; 2016 AnonyMessenger, Inc.</br></div><a class='ltgrn-text' href='https://butterfly.ai'>butterfly.ai</a></div>");
         }
         return this;
     }
@@ -91,7 +91,7 @@ views.MoodSelectionView = Backbone.View.extend({
 
 
 views.QuestionsView = Backbone.View.extend({
-    template: _.template('<p><button id="send" <%= disabled %>>Send</button></p>'),
+    //template: _.template('<p><button id="send" <%= disabled %>>Send</button></p>'),
     events: {
         'click #send': 'submit'
     },
@@ -118,11 +118,14 @@ views.QuestionsView = Backbone.View.extend({
                 '& Your answers will always remain anonymous."></textarea></p></div>');
             var disabled;
             if (this.allQuestionsAnswered()) {
-                disabled = "";
+                //disabled = "";
+                this.$el.append('<div id="send"><img class="send-button" src="images/ButtonActive.png"></div>');
             } else {
-                disabled = "disabled";
+                //disabled = "disabled";
+                this.$el.append('<div><img class="send-button" src="images/ButtonInactive.png"></div>');
             }
-            this.$el.append(this.template({disabled: disabled}));
+            //console.log(this.template({disabled: disabled, class: disabled}));
+            //this.$el.append(this.template({disabled: disabled, class: disabled}));
         }
         return this;
     },

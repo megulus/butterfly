@@ -54,6 +54,7 @@ textarea {
     padding: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
+    margin-bottom: 20px;
 }
 
 .question {
@@ -82,7 +83,7 @@ textarea {
 }
 
 .footer {
-    font-size: 10px;
+    font-size: 8px;
 }
 
 #smiley-box {

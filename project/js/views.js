@@ -21,7 +21,7 @@ views.FooterView = Backbone.View.extend({
 
 
 views.SelectedMoodView = Backbone.View.extend({
-    template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= imgPath %>"><img id="edit" src="images/Edit.png"></div>'+
+    template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= lgSmiley %>"><img id="edit" src="images/Edit.png"></div>'+
         '<div class="row mood-text-box"><div class="col-md-8" id="mood-text"><p><h5 class="white-text"><%= label %></h5></p>'
        + '<p class="ltgrn-text" id="thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
     events: {
@@ -33,9 +33,9 @@ views.SelectedMoodView = Backbone.View.extend({
     render: function () {
         this.$el.html('');
         if (!(this.model.get('submitted'))) {
-            if (this.model.get('imgPath') && this.model.get('label')) {
+            if (this.model.get('lgSmiley') && this.model.get('label')) {
                 this.$el.html(this.template({
-                    imgPath: this.model.get('imgPath'),
+                    lgSmiley: this.model.get('lgSmiley'),
                     label: this.model.get('label'),
                     alt: this.model.get('alt')
                 }));
@@ -51,17 +51,22 @@ views.SelectedMoodView = Backbone.View.extend({
         return this;
     },
     editMood: function () {
-        this.model.unset('imgPath');
+        this.model.unset('lgSmiley');
         this.model.unset('label');
     }
 });
 
 
 views.MoodSelectionView = Backbone.View.extend({
-    template: _.template('<label>&nbsp;<input type="radio" name="mood" value="<%= name %>">' +
-        '&nbsp;<%= symbol %>&nbsp;<%= label %></label>'),
+    template: _.template('<div class="sm-smiley" id="<%= name %>">' +
+        '<img src="<%= smSmiley %>"></div>'),
     events: {
-        'click input': 'selectMood'
+        'click .sm-smiley': 'selectMood'
+    },
+    attributes: function() {
+        return {
+            class: 'selection-view'
+        }
     },
     initialize: function (options) {
         this.parent = options.parent;
@@ -70,20 +75,20 @@ views.MoodSelectionView = Backbone.View.extend({
         var that = this;
         this.$el.html('<p>Did you make a mistake? Please select your correct mood.</p>');
         _.each(this.model.availableLevels, function (level) {
-            var label = level.label;
-            var symbol = level.symbol;
-            var name = level.name;
-            that.$el.append(that.template({symbol: symbol, label: label, name: name}));
+            //var label = level.label;
+            var smSmiley = level.smSmiley;
+            var name = + level.name;
+            that.$el.append(that.template({smSmiley: smSmiley, name: name}));
         });
         return this;
     },
     selectMood: function (event) {
         var $input = $(event.currentTarget);
-        var level = $input.val();
-        var symbol = this.model.availableLevels[level].symbol;
+        var level = $input.attr('id');
+        var lgSmiley = this.model.availableLevels[level].lgSmiley;
         var label = this.model.availableLevels[level].label;
         this.model.set({
-            symbol: symbol,
+            lgSmiley: lgSmiley,
             label: label
         });
     }

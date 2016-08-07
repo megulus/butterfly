@@ -178,7 +178,9 @@ views.SingleQuestionView = Backbone.View.extend({
         for (var i = 0; i < 5; i++) {
             var selected = ((i + 1) === userRating);
             var starPath;
-            if (this.model.get('hover')) {
+            if (selected) {
+                starPath = this.model.selected;
+            } else if (this.model.get('hover')) {
                 var starId = this.model.get('hoverTarget');
                 if (starId === this.questionNum + '_' + (i + 1)) {
                     starPath = this.model.hover;
@@ -192,7 +194,7 @@ views.SingleQuestionView = Backbone.View.extend({
                 id: this.questionNum + '_' + (i + 1),
                 name: name,
                 rating: i + 1,
-                selected: selected,
+                //selected: selected,
                 starPath: starPath
             }));
         }

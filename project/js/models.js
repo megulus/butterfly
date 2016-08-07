@@ -45,6 +45,7 @@ models.EmployeeMood = Backbone.Model.extend({
 models.AllUserInput = Backbone.Model.extend({
     star: 'images/LtGreyStar.png',
     hover: 'images/DarkGreyStar.png',
+    selected: 'images/SelectedStar.png',
     defaults: {
         questions: [],
         userAnswers: {},

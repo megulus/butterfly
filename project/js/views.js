@@ -145,7 +145,7 @@ views.QuestionsView = Backbone.View.extend({
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<p><%= question %></p>'),
-    template1: _.template('<div class="rating-buttons" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>"<%= selected ? "checked":""%>>' +
+    template1: _.template('<div class="rating-buttons" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
         '<img src="<%= starPath %>"></div>'),
     template2: _.template('<input id="<%= id %>" value="<%= value %>">'),
     events: {
@@ -211,7 +211,7 @@ views.SingleQuestionView = Backbone.View.extend({
     },
     updateUserRating: function (event) {
         var $input = $(event.currentTarget);
-        var value = parseInt($input.attr('id'));
+        var value = parseInt($input.attr('id').split('_')[1]);
         if (this.model.get('userAnswers')[this.questionNum]) {
             this.model.get('userAnswers')[this.questionNum]['rating'] = value;
         } else {

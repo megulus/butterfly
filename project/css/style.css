@@ -3,15 +3,16 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-textarea {
+input[type="text"] {
     width: 95%;
     height: 50px;
     border-radius: 3px;
     font-size: 10px;
     text-align: center;
     border: 1px solid #c3c3c3;
-    resize: none;
 }
+
+
 
 
 .header {
@@ -156,4 +157,13 @@ textarea {
     border-radius: 3px;
     margin: 20px 0;
     padding: 10px 0;
+}
+
+.rating-buttons {
+    display: inline-block;
+    margin: 5px;
+}
+
+.rating-buttons input[type="radio"] {
+    display: none;
 }

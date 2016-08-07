@@ -21,9 +21,9 @@ views.FooterView = Backbone.View.extend({
 
 
 views.SelectedMoodView = Backbone.View.extend({
-    template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= lgSmiley %>"><img id="edit" src="images/Edit.png"></div>'+
+    template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= lgSmiley %>"><img id="edit" src="images/Edit.png"></div>' +
         '<div class="row mood-text-box"><div class="col-md-8" id="mood-text"><p><h5 class="white-text"><%= label %></h5></p>'
-       + '<p class="ltgrn-text" id="thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
+        + '<p class="ltgrn-text" id="thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
     events: {
         'click #edit': 'editMood'
     },
@@ -63,7 +63,7 @@ views.MoodSelectionView = Backbone.View.extend({
     events: {
         'click .sm-smiley': 'selectMood'
     },
-    attributes: function() {
+    attributes: function () {
         return {
             class: 'selection-view'
         }
@@ -75,9 +75,8 @@ views.MoodSelectionView = Backbone.View.extend({
         var that = this;
         this.$el.html('<p>Did you make a mistake? Please select your correct mood.</p>');
         _.each(this.model.availableLevels, function (level) {
-            //var label = level.label;
             var smSmiley = level.smSmiley;
-            var name = + level.name;
+            var name = +level.name;
             that.$el.append(that.template({smSmiley: smSmiley, name: name}));
         });
         return this;
@@ -96,7 +95,6 @@ views.MoodSelectionView = Backbone.View.extend({
 
 
 views.QuestionsView = Backbone.View.extend({
-    //template: _.template('<p><button id="send" <%= disabled %>>Send</button></p>'),
     events: {
         'click #send': 'submit'
     },
@@ -119,18 +117,14 @@ views.QuestionsView = Backbone.View.extend({
                 that.$el.append(singleQuestionView.$el);
             });
             this.$el.append('<div class="addl-input"><p class="white-text">Anything to add?</p>' +
-                '<p><textarea id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
-                '& Your answers will always remain anonymous."></textarea></p></div>');
+                '<p><input id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
+                '& Your answers will always remain anonymous."></p></div>');
             var disabled;
             if (this.allQuestionsAnswered()) {
-                //disabled = "";
                 this.$el.append('<div id="send"><img class="send-button" src="images/ButtonActive.png"></div>');
             } else {
-                //disabled = "disabled";
                 this.$el.append('<div><img class="send-button" src="images/ButtonInactive.png"></div>');
             }
-            //console.log(this.template({disabled: disabled, class: disabled}));
-            //this.$el.append(this.template({disabled: disabled, class: disabled}));
         }
         return this;
     },
@@ -151,14 +145,16 @@ views.QuestionsView = Backbone.View.extend({
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<p><%= question %></p>'),
-    template1: _.template('<label><input type="radio" name="<%= name %>" value="<%= rating %>"<%= selected ? "checked":""%>>' +
-        '<%= rating %></label>'),
-    template2: _.template('<textarea id="<%= id %>" value="<%= value %>" type="text">'),
+    template1: _.template('<div class="rating-buttons" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>"<%= selected ? "checked":""%>>' +
+        '<img src="<%= starPath %>"></div>'),
+    template2: _.template('<input id="<%= id %>" value="<%= value %>">'),
     events: {
-        'click input[type="radio"]': 'updateUserRating',
-        'mouseleave textarea': 'updateUserText'
+        'click .rating-buttons': 'updateUserRating',
+        'mouseleave textarea': 'updateUserText',
+        'mouseover .rating-buttons': 'handleHover',
+        'mouseleave .rating-buttons': 'unHover'
     },
-    attributes: function() {
+    attributes: function () {
         return {
             class: 'question'
         }
@@ -170,9 +166,7 @@ views.SingleQuestionView = Backbone.View.extend({
     render: function () {
         var that = this;
         this.$el.html('');
-        //this.$el.append('<li>');
         this.$el.append(this.template0({question: this.model.get('questions')[this.questionNum - 1]}));
-        //this.$el.append('<p>');
         var name = 'question_' + this.questionNum;
         var userRating;
         if (this.model.get('userAnswers')[this.questionNum]) {
@@ -183,27 +177,45 @@ views.SingleQuestionView = Backbone.View.extend({
         this.$el.append('<p>');
         for (var i = 0; i < 5; i++) {
             var selected = ((i + 1) === userRating);
-            that.$el.append(that.template1({name: name, rating: i + 1, selected: selected}));
+            var starPath;
+            if (this.model.get('hover')) {
+                var starId = this.model.get('hoverTarget');
+                if (starId === this.questionNum + '_' + (i + 1)) {
+                    starPath = this.model.hover;
+                } else {
+                    starPath = this.model.star;
+                }
+            } else {
+                starPath = this.model.star;
+            }
+            that.$el.append(that.template1({
+                id: this.questionNum + '_' + (i + 1),
+                name: name,
+                rating: i + 1,
+                selected: selected,
+                starPath: starPath
+            }));
         }
         this.$el.append('</p>');
         if (userRating > 0 && userRating <= 2) {
             var value;
             if (that.model.get('userAnswers')[this.questionNum]['text']) {
                 value = that.model.get('userAnswers')[this.questionNum]['text'];
+                console.log(value);
             } else {
                 value = '';
             }
             that.$el.append(that.template2({id: name, value: value}));
         }
-        //this.$el.append('</li>');
         return this;
     },
     updateUserRating: function (event) {
         var $input = $(event.currentTarget);
+        var value = parseInt($input.attr('id'));
         if (this.model.get('userAnswers')[this.questionNum]) {
-            this.model.get('userAnswers')[this.questionNum]['rating'] = parseInt($input.val());
+            this.model.get('userAnswers')[this.questionNum]['rating'] = value;
         } else {
-            this.model.get('userAnswers')[this.questionNum] = {'rating': parseInt($input.val())};
+            this.model.get('userAnswers')[this.questionNum] = {'rating': value};
         }
         var questionsAnswered = this.model.get('questionsAnswered');
         this.model.set('questionsAnswered', questionsAnswered + 1);
@@ -218,6 +230,16 @@ views.SingleQuestionView = Backbone.View.extend({
         }
         var questionsAnswered = this.model.get('questionsAnswered');
         this.model.set('questionsAnswered', questionsAnswered + 1);
+    },
+    handleHover: function (event) {
+        var $input = $(event.currentTarget);
+        var id = $input.attr('id');
+        this.model.set('hover', true);
+        this.model.set('hoverTarget', id);
+    },
+    unHover: function(event) {
+        this.model.set('hover', false);
+        this.model.unset('hoverTarget');
     }
 });
 

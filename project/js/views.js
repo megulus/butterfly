@@ -145,7 +145,7 @@ views.QuestionsView = Backbone.View.extend({
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<p><%= question %></p>'),
-    template1: _.template('<div class="rating-buttons" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
+    template1: _.template('<div class="rating-buttons <%= highlighted %> <%= currentselection %>" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
         '<img src="<%= starPath %>"></div>'),
     template2: _.template('<input id="<%= id %>" value="<%= value %>">'),
     events: {
@@ -174,12 +174,22 @@ views.SingleQuestionView = Backbone.View.extend({
         } else {
             userRating = -1;
         }
-        this.$el.append('<p>');
+        var containerId = 'container_' + this.questionNum;
+        var $starContainer = $('<div class="star-container"></div>');
+        this.$el.append($starContainer);
         for (var i = 0; i < 5; i++) {
             var selected = ((i + 1) === userRating);
+            var highlighted;
+            if (i + 1 <= userRating) {
+                highlighted = 'highlighted'
+            } else {
+                highlighted = '';
+            }
             var starPath;
+            var currentSelection = 'not-selected';
             if (selected) {
                 starPath = this.model.selected;
+                currentSelection = 'selected';
             } else if (this.model.get('hover')) {
                 var starId = this.model.get('hoverTarget');
                 if (starId === this.questionNum + '_' + (i + 1)) {
@@ -190,15 +200,15 @@ views.SingleQuestionView = Backbone.View.extend({
             } else {
                 starPath = this.model.star;
             }
-            that.$el.append(that.template1({
+            $starContainer.append(that.template1({
+                highlighted: highlighted,
+                currentselection: currentSelection,
                 id: this.questionNum + '_' + (i + 1),
                 name: name,
                 rating: i + 1,
-                //selected: selected,
                 starPath: starPath
             }));
         }
-        this.$el.append('</p>');
         if (userRating > 0 && userRating <= 2) {
             var value;
             if (that.model.get('userAnswers')[this.questionNum]['text']) {
@@ -221,6 +231,7 @@ views.SingleQuestionView = Backbone.View.extend({
         }
         var questionsAnswered = this.model.get('questionsAnswered');
         this.model.set('questionsAnswered', questionsAnswered + 1);
+        this.model.set('selected', true);
     },
     updateUserText: function (event) {
         var $input = $(event.currentTarget);

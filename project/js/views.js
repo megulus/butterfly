@@ -117,7 +117,7 @@ views.QuestionsView = Backbone.View.extend({
                 that.$el.append(singleQuestionView.$el);
             });
             this.$el.append('<div class="addl-input"><p class="white-text">Anything to add?</p>' +
-                '<p><input id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
+                '<p><input type="text" id="addl_input" name="addl_input" placeholder="This is where you can express yourself freely ' +
                 '& Your answers will always remain anonymous."></p></div>');
             var disabled;
             if (this.allQuestionsAnswered()) {
@@ -145,9 +145,9 @@ views.QuestionsView = Backbone.View.extend({
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<p><%= question %></p>'),
-    template1: _.template('<div class="rating-buttons <%= highlighted %> <%= currentselection %>" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
+    template1: _.template('<div class="rating-buttons <%= highlighted %> <%= selected %>" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
         '<img src="<%= starPath %>"></div>'),
-    template2: _.template('<input id="<%= id %>" value="<%= value %>">'),
+    template2: _.template('<input type="text" id="<%= id %>" value="<%= value %>">'),
     events: {
         'click .rating-buttons': 'updateUserRating',
         'mouseleave textarea': 'updateUserText',
@@ -168,28 +168,47 @@ views.SingleQuestionView = Backbone.View.extend({
         this.$el.html('');
         this.$el.append(this.template0({question: this.model.get('questions')[this.questionNum - 1]}));
         var name = 'question_' + this.questionNum;
-        var userRating;
-        if (this.model.get('userAnswers')[this.questionNum]) {
-            userRating = this.model.get('userAnswers')[this.questionNum]['rating'];
-        } else {
-            userRating = -1;
-        }
-        var containerId = 'container_' + this.questionNum;
+        var userRating = this.getUserRating();
+        //var containerId = 'container_' + this.questionNum;
         var $starContainer = $('<div class="star-container"></div>');
+        var $highlightedContainer = $('<div class="highlighted-container"></div>');
+        var $unhighlightedContainer = $('<div class="unhighlighted-container"></div>');
+        $starContainer.append($highlightedContainer);
+        $starContainer.append($unhighlightedContainer);
         this.$el.append($starContainer);
         for (var i = 0; i < 5; i++) {
-            var selected = ((i + 1) === userRating);
-            var highlighted;
-            if (i + 1 <= userRating) {
-                highlighted = 'highlighted'
-            } else {
-                highlighted = '';
-            }
-            var starPath;
-            var currentSelection = 'not-selected';
-            if (selected) {
+            //var selected = ((i + 1) === userRating);
+            var starPath = this.model.star;
+            var selected = this.selected(i + 1, userRating);
+            if (selected === 'selected') {
                 starPath = this.model.selected;
-                currentSelection = 'selected';
+            }
+            var highlighted = this.highlighted(i + 1, userRating);
+            if (highlighted === 'highlighted' && selected === 'not-selected') {
+                starPath = this.model.highlighted;
+            }
+            if (this.model.get('hover') && this.isHoverTarget(i + 1) && selected === 'not-selected') {
+                starPath = this.model.hover;
+            }
+            var html = that.template1({
+                highlighted: highlighted,
+                selected: selected,
+                id: this.questionNum + '_' + (i + 1),
+                name: name,
+                rating: i + 1,
+                starPath: starPath
+            });
+            if (highlighted === 'highlighted') {
+                $highlightedContainer.append(html);
+            } else {
+                $unhighlightedContainer.append(html);
+            }
+
+
+            //var currentSelection = 'not-selected';
+            /*if (selected) {
+                starPath = this.model.selected;
+                //currentSelection = 'selected';
             } else if (this.model.get('hover')) {
                 var starId = this.model.get('hoverTarget');
                 if (starId === this.questionNum + '_' + (i + 1)) {
@@ -202,12 +221,12 @@ views.SingleQuestionView = Backbone.View.extend({
             }
             $starContainer.append(that.template1({
                 highlighted: highlighted,
-                currentselection: currentSelection,
+                selected: selected,
                 id: this.questionNum + '_' + (i + 1),
                 name: name,
                 rating: i + 1,
                 starPath: starPath
-            }));
+            }));*/
         }
         if (userRating > 0 && userRating <= 2) {
             var value;
@@ -220,6 +239,30 @@ views.SingleQuestionView = Backbone.View.extend({
             that.$el.append(that.template2({id: name, value: value}));
         }
         return this;
+    },
+    isHoverTarget: function(num) {
+        return this.model.get('hoverTarget') === this.questionNum + '_' + num;
+    },
+    getUserRating: function() {
+        if (this.model.get('userAnswers')[this.questionNum]) {
+            return this.model.get('userAnswers')[this.questionNum]['rating'];
+        } else {
+            return -1;
+        }
+    },
+    selected: function(num, rating) {
+        if (num === rating) {
+            return 'selected';
+        } else {
+            return 'not-selected';
+        }
+    },
+    highlighted: function(num, rating) {
+        if (num <= rating) {
+            return 'highlighted';
+        } else {
+            return '';
+        }
     },
     updateUserRating: function (event) {
         var $input = $(event.currentTarget);

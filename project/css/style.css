@@ -178,13 +178,27 @@ input[type="text"] {
     height: 100%;
 }
 
-.highlighted .not-selected {
+.highlighted.not-selected {
     padding-top: 10px;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.highlighted .selected {
+.highlighted.selected {
     padding-right: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.highlighted-container {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .star-container {
@@ -194,7 +208,7 @@ input[type="text"] {
     align-items: center;
     border: 1px solid #c3c3c3;
     border-radius: 20px;
-    height: 40px;
+    height: 45px;
     background-color: #f7f7f7;
     /*overflow: hidden;
     clear: both;

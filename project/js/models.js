@@ -46,6 +46,7 @@ models.AllUserInput = Backbone.Model.extend({
     star: 'images/LtGreyStar.png',
     hover: 'images/DarkGreyStar.png',
     selected: 'images/SelectedStar.png',
+    highlighted: 'images/HiLtStar.png',
     defaults: {
         questions: [],
         userAnswers: {},

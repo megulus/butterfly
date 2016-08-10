@@ -145,7 +145,7 @@ views.QuestionsView = Backbone.View.extend({
 
 views.SingleQuestionView = Backbone.View.extend({
     template0: _.template('<p><%= question %></p>'),
-    template1: _.template('<div class="rating-buttons <%= highlighted %> <%= selected %>" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
+    template1: _.template('<div class="rating-buttons" id="<%= id %>"><input type="radio" name="<%= name %>" value="<%= rating %>">' +
         '<img src="<%= starPath %>"></div>'),
     template2: _.template('<input type="text" id="<%= id %>" value="<%= value %>">'),
     events: {
@@ -169,7 +169,6 @@ views.SingleQuestionView = Backbone.View.extend({
         this.$el.append(this.template0({question: this.model.get('questions')[this.questionNum - 1]}));
         var name = 'question_' + this.questionNum;
         var userRating = this.getUserRating();
-        //var containerId = 'container_' + this.questionNum;
         var $starContainer = $('<div class="star-container"></div>');
         var $highlightedContainer = $('<div class="highlighted-container"></div>');
         var $unhighlightedContainer = $('<div class="unhighlighted-container"></div>');
@@ -177,56 +176,27 @@ views.SingleQuestionView = Backbone.View.extend({
         $starContainer.append($unhighlightedContainer);
         this.$el.append($starContainer);
         for (var i = 0; i < 5; i++) {
-            //var selected = ((i + 1) === userRating);
             var starPath = this.model.star;
-            var selected = this.selected(i + 1, userRating);
-            if (selected === 'selected') {
+            if (this.isSelected(i + 1, userRating)) {
                 starPath = this.model.selected;
             }
-            var highlighted = this.highlighted(i + 1, userRating);
-            if (highlighted === 'highlighted' && selected === 'not-selected') {
+            if (this.isHighlighted(i + 1, userRating) && !(this.isSelected(i + 1, userRating))) {
                 starPath = this.model.highlighted;
             }
-            if (this.model.get('hover') && this.isHoverTarget(i + 1) && selected === 'not-selected') {
+            if (this.model.get('hover') && this.isHoverTarget(i + 1) && !(this.isSelected(i + 1, userRating))) {
                 starPath = this.model.hover;
             }
             var html = that.template1({
-                highlighted: highlighted,
-                selected: selected,
                 id: this.questionNum + '_' + (i + 1),
                 name: name,
                 rating: i + 1,
                 starPath: starPath
             });
-            if (highlighted === 'highlighted') {
+            if (this.isHighlighted(i + 1, userRating)) {
                 $highlightedContainer.append(html);
             } else {
                 $unhighlightedContainer.append(html);
             }
-
-
-            //var currentSelection = 'not-selected';
-            /*if (selected) {
-                starPath = this.model.selected;
-                //currentSelection = 'selected';
-            } else if (this.model.get('hover')) {
-                var starId = this.model.get('hoverTarget');
-                if (starId === this.questionNum + '_' + (i + 1)) {
-                    starPath = this.model.hover;
-                } else {
-                    starPath = this.model.star;
-                }
-            } else {
-                starPath = this.model.star;
-            }
-            $starContainer.append(that.template1({
-                highlighted: highlighted,
-                selected: selected,
-                id: this.questionNum + '_' + (i + 1),
-                name: name,
-                rating: i + 1,
-                starPath: starPath
-            }));*/
         }
         if (userRating > 0 && userRating <= 2) {
             var value;
@@ -240,28 +210,24 @@ views.SingleQuestionView = Backbone.View.extend({
         }
         return this;
     },
-    isHoverTarget: function(num) {
+    isHoverTarget: function (num) {
         return this.model.get('hoverTarget') === this.questionNum + '_' + num;
     },
-    getUserRating: function() {
+    getUserRating: function () {
         if (this.model.get('userAnswers')[this.questionNum]) {
             return this.model.get('userAnswers')[this.questionNum]['rating'];
         } else {
             return -1;
         }
     },
-    selected: function(num, rating) {
+    isSelected: function (num, rating) {
         if (num === rating) {
-            return 'selected';
-        } else {
-            return 'not-selected';
+            return true;
         }
     },
-    highlighted: function(num, rating) {
+    isHighlighted: function (num, rating) {
         if (num <= rating) {
-            return 'highlighted';
-        } else {
-            return '';
+            return true;
         }
     },
     updateUserRating: function (event) {
@@ -293,7 +259,7 @@ views.SingleQuestionView = Backbone.View.extend({
         this.model.set('hover', true);
         this.model.set('hoverTarget', id);
     },
-    unHover: function(event) {
+    unHover: function (event) {
         this.model.set('hover', false);
         this.model.unset('hoverTarget');
     }

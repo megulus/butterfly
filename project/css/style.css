@@ -173,25 +173,7 @@ input[type="text"] {
     display: none;
 }
 
-.highlighted {
-    background-color: #fef8b2;
-    height: 100%;
-}
 
-.highlighted.not-selected {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.highlighted.selected {
-    padding-right: 0 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .highlighted-container {
     padding-top: 10px;
@@ -199,6 +181,8 @@ input[type="text"] {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fef8b2;
+    height: 100%;
 }
 
 .star-container {

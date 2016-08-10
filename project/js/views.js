@@ -179,6 +179,7 @@ views.SingleQuestionView = Backbone.View.extend({
             var starPath = this.model.star;
             if (this.isSelected(i + 1, userRating)) {
                 starPath = this.model.selected;
+                $highlightedContainer.addClass('selected');
             }
             if (this.isHighlighted(i + 1, userRating) && !(this.isSelected(i + 1, userRating))) {
                 starPath = this.model.highlighted;

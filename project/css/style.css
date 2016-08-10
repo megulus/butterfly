@@ -60,7 +60,8 @@ input[type="text"] {
     margin: 5px;
     background-color: #ffffff;
     border-radius: 3px;
-    padding: 10px 10px;
+    padding: 10px 30px;
+    align-items: center;
 }
 
 .question input {
@@ -95,14 +96,14 @@ input[type="text"] {
 
 #smiley {
     position: absolute;
-    left: 10px;
+    left: 12px;
     z-index: 10;
 }
 
 #edit {
     position: absolute;
     top: 40px;
-    left: 75px;
+    left: 80px;
 }
 
 
@@ -160,9 +161,7 @@ input[type="text"] {
 .rating-buttons {
     display: inline-block;
     margin: 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    position: relative;
+    padding: 15px;
     /top: 50%;/
     /*z-index: 2;*/
 }
@@ -174,15 +173,30 @@ input[type="text"] {
 }
 
 
+.selected.highlighted-container .rating-buttons {
+    padding-right: 0;
+}
+
+.selected.highlighted-container {
+    margin-right: 15px;
+}
+
+.selected .rating-buttons img {
+    z-index: 10;
+}
 
 .highlighted-container {
-    padding-top: 10px;
+    /*padding-top: 10px;
     padding-bottom: 10px;
+    padding-right: 0;*/
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fef8b2;
     height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
 }
 
 .star-container {
@@ -192,8 +206,9 @@ input[type="text"] {
     align-items: center;
     border: 1px solid #c3c3c3;
     border-radius: 20px;
-    height: 45px;
+    height: 40px;
     background-color: #f7f7f7;
+    z-index: -1;
     /*overflow: hidden;
     clear: both;
     border: 1px solid #c3c3c3;

@@ -60,7 +60,7 @@ input[type="text"] {
     margin: 5px;
     background-color: #ffffff;
     border-radius: 3px;
-    padding: 10px 30px;
+    padding: 10px 32px;
     align-items: center;
 }
 
@@ -161,9 +161,11 @@ input[type="text"] {
 .rating-buttons {
     display: inline-block;
     margin: 0;
-    padding: 15px;
-    /top: 50%;/
-    /*z-index: 2;*/
+    /*padding: 15px;*/
+    padding-right: 0;
+    top: 50%;
+    width: 62px;
+    z-index: 10;
 }
 
 
@@ -173,30 +175,27 @@ input[type="text"] {
 }
 
 
-.selected.highlighted-container .rating-buttons {
+/*.selected.highlighted-container .rating-buttons {
     padding-right: 0;
-}
+}*/
 
-.selected.highlighted-container {
+
+
+/*.selected.highlighted-container {
     margin-right: 15px;
-}
+}*/
 
-.selected .rating-buttons img {
+/*.selected.rating-buttons img {
     z-index: 10;
-}
+}*/
 
 .highlighted-container {
-    /*padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 0;*/
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fef8b2;
     height: 100%;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
+    border-radius: 22px;
 }
 
 .star-container {
@@ -205,14 +204,9 @@ input[type="text"] {
     justify-content: center;
     align-items: center;
     border: 1px solid #c3c3c3;
-    border-radius: 20px;
+    border-radius: 22px;
     height: 40px;
     background-color: #f7f7f7;
     z-index: -1;
-    /*overflow: hidden;
-    clear: both;
-    border: 1px solid #c3c3c3;
-    margin-bottom: 10px;
-    height: 45px;*/
 }
 

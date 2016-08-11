@@ -38,8 +38,12 @@ input[type="text"] {
     color: #00e5cf;
 }
 
-#thanks {
+.thanks {
     font-size: 12px;
+}
+
+.submission {
+    margin-top: 40px;
 }
 
 .mood-text-box {

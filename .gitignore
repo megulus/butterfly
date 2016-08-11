@@ -3,11 +3,10 @@
 
 project/bower_components/
 node_modules/
+build/
 
-package.json
 
-js/router.js
-basicNodeServer.js
 
-project/layout.html
+
+
 

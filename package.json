@@ -1,0 +1,31 @@
+{
+  "name": "butterfly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megulus/butterfly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/megulus/butterfly/issues"
+  },
+  "homepage": "https://github.com/megulus/butterfly#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-debug": "^2.1.2",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-usemin": "^0.3.23"
+  }
+}

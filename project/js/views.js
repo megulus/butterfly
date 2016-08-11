@@ -23,7 +23,7 @@ views.FooterView = Backbone.View.extend({
 views.SelectedMoodView = Backbone.View.extend({
     template: _.template('<div id="smiley-box"><img id="smiley" alt="<%= alt %>" src="<%= lgSmiley %>"><img id="edit" src="images/Edit.png"></div>' +
         '<div class="row mood-text-box"><div class="col-md-8" id="mood-text"><p><h5 class="white-text"><%= label %></h5></p>'
-        + '<p class="ltgrn-text" id="thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
+        + '<p class="ltgrn-text thanks">THANK YOU FOR YOUR FEEDBACK</p></div></div>'),
     events: {
         'click #edit': 'editMood'
     },
@@ -45,8 +45,8 @@ views.SelectedMoodView = Backbone.View.extend({
                 this.$el.html(moodSelectionView.$el);
             }
         } else {
-            this.$el.html('<p>THANK YOU FOR THE EXTRA FEEDBACK</p>' +
-                '<h4>Have a nice day!</h4>')
+            this.$el.html('<p class="submission ltgrn-text thanks">THANK YOU FOR THE EXTRA FEEDBACK</p>' +
+                '<h4 class="white-text">Have a nice day!</h4>')
         }
         return this;
     },
@@ -150,7 +150,7 @@ views.SingleQuestionView = Backbone.View.extend({
     template2: _.template('<input type="text" id="<%= id %>" value="<%= value %>">'),
     events: {
         'click .rating-buttons': 'updateUserRating',
-        'mouseleave textarea': 'updateUserText',
+        'mouseleave input[type="text"]': 'updateUserText',
         'mouseover .rating-buttons': 'handleHover',
         'mouseleave .rating-buttons': 'unHover'
     },
@@ -203,7 +203,7 @@ views.SingleQuestionView = Backbone.View.extend({
             var value;
             if (that.model.get('userAnswers')[this.questionNum]['text']) {
                 value = that.model.get('userAnswers')[this.questionNum]['text'];
-                console.log(value);
+                //console.log(value);
             } else {
                 value = '';
             }

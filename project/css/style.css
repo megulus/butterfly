@@ -23,6 +23,11 @@ input[type="text"] {
 
 .main {
     background-color: #00828c;
+    min-height: 85vh;
+}
+
+.footer {
+    background-color: #00828c;
 }
 
 .white-text {

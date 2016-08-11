@@ -62,7 +62,7 @@ var questionsView = new views.QuestionsView({
     model: allUserInput
 });
 var footerView = new views.FooterView({
-    el: $('#footer'),
+    el: $('#footer-content'),
     model: allUserInput
 });
 

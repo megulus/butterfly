@@ -65,7 +65,7 @@ views.MoodSelectionView = Backbone.View.extend({
     },
     attributes: function () {
         return {
-            class: 'selection-view'
+            class: 'mood-selection-box white-bkgrnd rounded-corners'
         }
     },
     initialize: function (options) {
@@ -73,7 +73,7 @@ views.MoodSelectionView = Backbone.View.extend({
     },
     render: function () {
         var that = this;
-        this.$el.html('<p>Did you make a mistake? Please select your correct mood.</p>');
+        this.$el.html('<p class="dark-grey-text">Did you make a mistake? Please select your correct mood.</p>');
         _.each(this.model.availableLevels, function (level) {
             var smSmiley = level.smSmiley;
             var name = +level.name;
@@ -104,6 +104,7 @@ views.QuestionsView = Backbone.View.extend({
     render: function () {
         var that = this;
         this.$el.html('');
+        this.$el.addClass('dark-grn-bkgrnd rounded-corners');
         if (!(this.model.get('submitted'))) {
             this.$el.append('<div class="banner-box"><div class="triangle"><img src="images/Triangle.png"></div><div class="qn-banner"><p class="white-text">Your answers will always remain anonymous.</p></div></div>' +
                 '<div class="title"><p class="qn-container ltgrn-text">Do you agree with the following statements:</p></div>');

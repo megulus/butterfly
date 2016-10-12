@@ -4,14 +4,14 @@ var models = {};
 
 models.EmployeeMood = Backbone.Model.extend({
     availableLevels: {
-        '1': {
+        '5': {
             name: '1',
             label: "Oops",
             alt: ":'(",
             lgSmiley: "images/Smiley1.png",
             smSmiley: "images/SmallSmiley1.png"
         },
-        '2': {
+        '4': {
             name: '2',
             label: "Mmmmh...",
             alt: ":(",
@@ -25,14 +25,14 @@ models.EmployeeMood = Backbone.Model.extend({
             lgSmiley: "images/Smiley3.png",
             smSmiley: "images/SmallSmiley3.png"
         },
-        '4': {
+        '2': {
             name: '4',
             label: "Great!",
             alt: ":)",
             lgSmiley: "images/Smiley4.png",
             smSmiley: "images/SmallSmiley4.png"
         },
-        '5': {
+        '1': {
             name: '5',
             label: "Awesome!",
             alt: ":-D",

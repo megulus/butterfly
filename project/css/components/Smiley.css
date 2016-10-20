@@ -1,0 +1,28 @@
+.smiley {
+    display: block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 100px;
+    width: 97px;
+    vertical-align: middle;
+}
+
+.one {
+    background-image: url('./images/Smiley1.png');
+}
+
+.two {
+    background-image: url('./images/Smiley2.png');
+}
+
+.three {
+    background-image: url('./images/Smiley3.png');
+}
+
+.four {
+    background-image: url('./images/Smiley4.png');
+}
+
+.five {
+    background-image: url('./images/Smiley5.png');
+}

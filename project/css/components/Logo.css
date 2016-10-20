@@ -1,0 +1,11 @@
+.Logo {
+    background-image: url('./images/BG.png');
+    display: block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 36px;
+    width: 36px;
+    margin: 5px -10px;
+    vertical-align: middle;
+}
+

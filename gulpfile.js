@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     mainBowerFiles = require('gulp-bower'),
-    //usemin = require('gulp-usemin'),
     minifyhtml = require('gulp-htmlmin'),
     cleancss = require('gulp-clean-css'),
     uglify = require('gulp-uglify'),
@@ -11,12 +10,19 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
+    envify = require('envify/custom'),
+    gulpif = require('gulp-if'),
+    env = require('gulp-env'),
+    argv = require('yargs').argv,
     debug = require('gulp-debug');
 
 
+//process.env.NODE_ENV = 'foo';
+
+
 var paths = {
-    css: ['project/css/*.css', 'projects/css/components/*.css'],
-    js: ['project/js/*.js', 'project/js/components/*.js'],
+    css: ['project/css/*.css', 'project/css/components/*.css'],
+    js: ['project/js/*.js', 'project/js/components/*.js', 'project/js/flux/*.js'],
     html: ['project/*.html']
 };
 
@@ -25,59 +31,52 @@ gulp.task('bower', function() {
         .pipe(gulp.dest('build/bower_components'))
 });
 
-// not using?
-/*gulp.task('usemin', function() {
- return gulp.src('./project/!*.html')
- .pipe(usemin({
- html: [minifyhtml({collapseWhitespace: true})],
- css: [cleancss({compatibility: 'ie8'})],
- js: [uglify(), 'concat']
- }))
- .pipe(debug({title: 'usemin-debug'}))
- .pipe(gulp.dest('build'))
- });*/
 
 gulp.task('images', function() {
     return gulp.src(['./project/images/*.png'])
-        .pipe(debug({title: 'images-debug'}))
+        .pipe(gulpif(argv.gulpdebug, debug({title: 'images-debug'})))
         .pipe(gulp.dest('build/images'))
 });
 
 gulp.task('watch', function() {
     gulp.watch(paths.css, ['css']);
     gulp.watch(paths.js, ['scripts']);
-    gulp.watch(paths.html, ['minifyhtml']);
+    gulp.watch(paths.html, ['html']);
 });
 
 gulp.task('scripts', function() {
     var bundler = browserify({
-        entries: 'js/source/app.js',
-        debug: true
+        entries: 'project/js/app.js'
     });
-    bundler.transform(babelify, {presets: ["es2015", "react"]});
+    bundler
+        .transform(babelify, {presets: ["es2015", "react"]});
     return bundler.bundle()
         .on('error', function(err) {
-            console.log(err)
+            console.error(err)
         })
         .pipe(source('app.js'))
         .pipe(buffer())
-        .pipe(uglify())
+        .pipe(gulpif(argv.production, env({vars: {NODE_ENV: 'production'}})))
+        .pipe(gulpif(argv.production, uglify()))
+        .pipe(rename('bundle.js'))
         .pipe(gulp.dest('build'));
 });
 
 gulp.task('css', function() {
-    return gulp.src(['/project/css/*.css', '/project/css/components/*.css'])
-        .pipe(cleancss({compatibility: 'ie8'}))
+    return gulp.src(['./project/css/*.css', './project/css/components/*.css'])
+        .pipe(gulpif(argv.gulpdebug, debug({title: 'css-debug'})))
+        .pipe(gulpif(argv.production, cleancss({compatibility: 'ie8'})))
         .pipe(concat('bundle.css'))
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('minifyhtml', function() {
+gulp.task('html', function() {
     return gulp.src('project/*.html')
-        .pipe(minifyhtml({collapseWhitespace: true}))
+        .pipe(gulpif(argv.gulpdebug, debug({title: 'html-debug'})))
+        .pipe(gulpif(argv.production, minifyhtml({collapseWhitespace: true})))
         .pipe(gulp.dest('build'));
 });
 
 
-gulp.task('build', ['bower', 'images', 'scripts', 'css', 'minifyhtml']);
+gulp.task('build', ['bower', 'images', 'scripts', 'css', 'html']);
 gulp.task('default', ['build']);

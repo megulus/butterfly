@@ -1,7 +1,7 @@
 import {EventEmitter} from 'fbemitter';
 
 
-let mood;
+let currentMood = null;
 let moodText;
 const availableMoods = {
     1: 'Oops',
@@ -31,7 +31,7 @@ const emitter = new EventEmitter();
 const Store = {
 
     init(v) {
-        mood = v;
+        currentMood = v;
         moodText = availableMoods[v];
         this.shuffle(questions);
         let count = 0;
@@ -44,14 +44,22 @@ const Store = {
     },
 
     getMood() {
-        return mood;
+        return currentMood;
     },
 
     getMoodText() {
-        return availableMoods[mood] ? availableMoods[mood] : null;
+        return availableMoods[currentMood] ? availableMoods[currentMood] : null;
     },
 
-    getMoodClass() {
+    unsetMood() {
+        currentMood = null;
+        emitter.emit('change');
+    },
+
+    getMoodClass({mood}={}) {
+        if (!mood) {
+            mood = currentMood;
+        }
         return moodClasses[mood] ? moodClasses[mood] : null;
     },
 
@@ -59,9 +67,17 @@ const Store = {
         return questions;
     },
 
+    getAllMoods() {
+        return Object.keys(moodClasses);
+    },
+
     setMood(newMood) {
-        mood = newMood;
+        currentMood = newMood;
         emitter.emit('change');
+    },
+
+    addListener(eventType, fn) {
+        emitter.addListener(eventType, fn);
     },
 
     shuffle(array) {

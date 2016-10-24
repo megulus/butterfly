@@ -1,47 +1,47 @@
 import React, {Component, PropTypes} from 'react';
 import Store from '../flux/Store';
 import SelectedMood from './SelectedMood';
-import Smiley from './Smiley';
+//import Smiley from './Smiley';
+import MoodSelector from './MoodSelector';
 
 class MoodDisplay extends Component {
 
     constructor(props) {
         super(props); // do I need this? or only if I create a (FormInput) parent class?
         this.state = {
-            mood: Store.getMood(),
-            moodText: Store.getMoodText(),
-            moodClass: Store.getMoodClass(),
-            editing: false
+            //mood: Store.getMood(),
+            //moodText: Store.getMoodText(),
+            //moodClass: Store.getMoodClass(),
+            editing: Store.getMood() === null
         };
+        Store.addListener('change', () => {
+            this.setState({
+                editing: Store.getMood() === null
+            })
+        });
     }
 
     render() {
-        if (!this.state.editing) { // TODO: unset mood in Store instead?
+        if (!this.state.editing) {
             return (
-                <div><SelectedMood /></div>
+                <SelectedMood />
+            );
+        } else {
+            return (
+                <MoodSelector />
             );
         }
-        /*const smileyProps = {
-            moodClass: this.state.moodClass,
-            small: this.state.editing
-        };
-        return (
-            <div>
-                <div className="smiley-box"><Smiley {...smileyProps} /></div>
-                <div>{this.state.moodClass}</div>
-            </div>
-        );*/
     }
 }
 
 MoodDisplay.PropTypes = {
-    defaultValue: PropTypes.number,
-    editing: PropTypes.bool
+    //defaultValue: PropTypes.number,
+    //editing: PropTypes.bool
 };
 
 MoodDisplay.defaultProps = {
-    defaultValue: 3,
-    editing: false
+    //defaultValue: 3,
+    //editing: false
 };
 
 export default MoodDisplay

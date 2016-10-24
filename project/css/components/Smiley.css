@@ -5,6 +5,17 @@
     height: 100px;
     width: 97px;
     vertical-align: middle;
+    position: absolute;
+    z-index: 10;
+}
+
+.small {
+    display: inline-block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 49px;
+    width: 49px;
+    vertical-align: middle;
 }
 
 .one {
@@ -25,4 +36,24 @@
 
 .five {
     background-image: url('./images/Smiley5.png');
+}
+
+.one.small {
+    background-image: url('./images/SmallSmiley1.png');
+}
+
+.two.small {
+    background-image: url('./images/SmallSmiley2.png');
+}
+
+.three.small {
+    background-image: url('./images/SmallSmiley3.png');
+}
+
+.four.small {
+    background-image: url('./images/SmallSmiley4.png');
+}
+
+.five.small {
+    background-image: url('./images/SmallSmiley5.png');
 }

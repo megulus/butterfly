@@ -1,0 +1,12 @@
+.Edit {
+    background-image: url('./images/Edit.png');
+    display: block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 24px;
+    width: 53px;
+    vertical-align: middle;
+    position: absolute;
+    top: 40px;
+    left: 68px;
+}

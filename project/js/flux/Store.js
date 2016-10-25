@@ -24,6 +24,7 @@ let questions = [
     'I like my work environment, and I believe it helps me perform at my best.',
     'My direct manager gives me necessary support and clear objectives.'
 ];
+let currentRating = null;
 let userAnswers ={};
 const emitter = new EventEmitter();
 
@@ -74,6 +75,10 @@ const Store = {
     setMood(newMood) {
         currentMood = newMood;
         emitter.emit('change');
+    },
+
+    getRating() {
+        return currentRating;
     },
 
     addListener(eventType, fn) {

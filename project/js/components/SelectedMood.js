@@ -22,6 +22,7 @@ class SelectedMood extends Component {
                     <div onClick={this.unsetMood.bind(this)}><Edit /></div>
                 </div>
                 <div>{moodText}</div>
+                <div>Thank you for your feedback</div>
             </div>
         );
     }

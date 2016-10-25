@@ -2,6 +2,7 @@
 
 import Logo from './components/Logo';
 import MoodDisplay from './components/MoodDisplay';
+import QuestionContainer from './components/QuestionContainer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Store from './flux/Store';
@@ -19,7 +20,6 @@ function getUrlParam(search) {
 }
 
 let v = getUrlParam(window.location.search);
-//console.log(v);
 Store.init(v);
 
 
@@ -31,6 +31,9 @@ ReactDOM.render(
         </div>
         <div className="row">
             <MoodDisplay />
+        </div>
+        <div className="row">
+            <QuestionContainer />
         </div>
     </div>,
     document.getElementById('app')

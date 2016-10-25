@@ -6,7 +6,6 @@ import Store from '../flux/Store';
 class MoodSelector extends Component {
 
     setMood(mood) {
-        console.log('setting mood!');
         Store.setMood(mood);
     }
 

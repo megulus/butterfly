@@ -5,20 +5,20 @@ import MoodSelector from './MoodSelector';
 
 class MoodDisplay extends Component {
 
-    constructor(props) {
-        super(props); // do I need this?
+    constructor() {
+        super();
         this.state = {
-            editing: Store.getMood() === null
+            moodUnset: Store.getMood() === null
         };
         Store.addListener('change', () => {
             this.setState({
-                editing: Store.getMood() === null
+                moodUnset: Store.getMood() === null
             })
         });
     }
 
     render() {
-        if (!this.state.editing) {
+        if (!this.state.moodUnset) {
             return (
                 <SelectedMood />
             );
@@ -30,14 +30,5 @@ class MoodDisplay extends Component {
     }
 }
 
-/*MoodDisplay.PropTypes = {
-    //defaultValue: PropTypes.number,
-    //editing: PropTypes.bool
-};
-
-MoodDisplay.defaultProps = {
-    //defaultValue: 3,
-    //editing: false
-};*/
 
 export default MoodDisplay

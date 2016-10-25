@@ -1,7 +1,11 @@
-.smiley-box {
+.smiley-box-lg {
     display: inline-block;
     position: relative;
     width: 125px;
     height: 100px;
     padding: 0;
+}
+
+.smiley-box-sm {
+    display: inline-block;
 }

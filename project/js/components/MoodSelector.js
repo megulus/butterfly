@@ -5,15 +5,23 @@ import Store from '../flux/Store';
 
 class MoodSelector extends Component {
 
+    setMood(mood) {
+        console.log('setting mood!');
+        Store.setMood(mood);
+    }
+
     render() {
         const smileyProps = {
-            //moodClass: Store.getMoodClass(),
             small: true
         };
         let smileys = [];
         for (let i = 5; i > 0; i--) {
+            smileyProps.mood = i;
             smileyProps.moodClass = Store.getMoodClass({mood: i});
-            smileys.push(<Smiley {...smileyProps}/>)
+            smileys.push(
+                <div className="smiley-box-sm" onClick={this.setMood.bind(this, smileyProps.mood)}>
+                    <Smiley {...smileyProps} />
+                </div>)
         }
         return (
             <div>

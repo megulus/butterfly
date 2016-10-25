@@ -6,7 +6,6 @@ import Edit from './Edit';
 class SelectedMood extends Component {
 
     unsetMood() {
-        console.log('I am here!');
         Store.unsetMood();
     }
 
@@ -18,7 +17,7 @@ class SelectedMood extends Component {
         const moodText = Store.getMoodText();
         return (
             <div>
-                <div className="smiley-box">
+                <div className="smiley-box-lg">
                     <Smiley {...smileyProps} />
                     <div onClick={this.unsetMood.bind(this)}><Edit /></div>
                 </div>

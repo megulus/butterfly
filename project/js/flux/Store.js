@@ -1,8 +1,10 @@
 import {EventEmitter} from 'fbemitter';
 
 
-let currentMood = null;
+let currentMood = null;  // why is this redundant?
+//let currentRating = null;
 let moodText;
+
 const availableMoods = {
     1: 'Oops',
     2: 'Mmmmh...',
@@ -24,7 +26,7 @@ let questions = [
     'I like my work environment, and I believe it helps me perform at my best.',
     'My direct manager gives me necessary support and clear objectives.'
 ];
-let currentRating = null;
+
 let userAnswers ={};
 const emitter = new EventEmitter();
 
@@ -41,6 +43,7 @@ const Store = {
             userAnswers[count] = {};
             userAnswers[count]['question'] = item;
             userAnswers[count]['answer'] = null;
+            userAnswers[count]['rating'] = null;
         }
     },
 
@@ -64,8 +67,8 @@ const Store = {
         return moodClasses[mood] ? moodClasses[mood] : null;
     },
 
-    getQuestions() {
-        return questions;
+    getQuestionsObj() {
+        return userAnswers;
     },
 
     getAllMoods() {
@@ -77,8 +80,13 @@ const Store = {
         emitter.emit('change');
     },
 
-    getRating() {
-        return currentRating;
+    getRating(qnNumber) {
+        return userAnswers[qnNumber]['rating'];
+    },
+
+    setRating(qnNumber, newRating) {
+        userAnswers[qnNumber]['rating'] = newRating;
+        emitter.emit('change');
     },
 
     addListener(eventType, fn) {

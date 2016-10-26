@@ -3,10 +3,12 @@ import Store from '../flux/Store';
 
 class Question extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            lowRating: Store.getRating() ? Store.getRating() <= 2 : null
+            lowRating: Store.getRating(this.props.qnNumber)
+                ? Store.getRating(this.props.qnNumber) <= 2
+                : null
         };
     }
 
@@ -19,7 +21,8 @@ class Question extends Component {
 }
 
 Question.propTypes = {
-    question: PropTypes.string.required
+    question: PropTypes.string.required,
+    qnNumber: PropTypes.number.required
 };
 
 export default Question

@@ -2,8 +2,13 @@ import React, {Component, PropTypes} from 'react';
 import Store from '../flux/Store';
 import Question from './Question';
 import Rating from './Rating';
+import AnswerInput from './AnswerInput';
 
 class QuestionContainer extends Component {
+
+    constructor() {
+        super();
+    }
 
     render() {
         const allQuestionsObj = Store.getQuestionsObj();
@@ -14,13 +19,13 @@ class QuestionContainer extends Component {
             questions.push(
                 <div>
                     <Question qnNumber={i} question={qn}/>
-                    <Rating qnNumber={i} />
                 </div>
             );
         }
         return (
             <div>
                 {questions}
+                <AnswerInput ref="extra"/>
             </div>);
     }
 

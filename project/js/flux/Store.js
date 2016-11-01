@@ -2,7 +2,6 @@ import {EventEmitter} from 'fbemitter';
 
 
 let currentMood = null;  // why is this redundant?
-//let currentRating = null;
 let moodText;
 
 const availableMoods = {
@@ -87,6 +86,7 @@ const Store = {
     setRating(qnNumber, newRating) {
         userAnswers[qnNumber]['rating'] = newRating;
         emitter.emit('change');
+
     },
 
     addListener(eventType, fn) {

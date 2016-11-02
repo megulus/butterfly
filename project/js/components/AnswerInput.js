@@ -2,24 +2,27 @@ import React, {Component, PropTypes} from 'react';
 
 class AnswerInput extends Component {
 
-    getValue() {
-        return this.refs.input.value
-            ? this.refs.input.value
-            : this.refs.input.getValue();
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: ''
+        };
     }
 
-    setAnswer() {
-        let answer = this.getValue();
-        //console.log(answer);
+    handleChange(event) {
+        this.setState({
+            value: event.target.value
+        });
     }
 
     render() {
-        let prompt = this.props.id
+        let prompt = this.props.type === 'extra'
             ? 'This is where you can express yourself freely.'
-            + 'Your answers will always remain anonymous.'
+            + ' Your answers will always remain anonymous.'
             : '';
+        console.log('value: ' + this.state.value);
         return (
-            <input type="text" placeholder={prompt} ref={this.props.ref} onChange={this.setAnswer.bind(this)} />
+            <input type="text" placeholder={prompt} ref={this.props.ref} onChange={this.handleChange.bind(this)} />
         );
     }
 
@@ -27,7 +30,7 @@ class AnswerInput extends Component {
 
 AnswerInput.propTypes = {
     qnNumber: PropTypes.number,
-    ref: PropTypes.string
+    type: PropTypes.string.required
 };
 
 export default AnswerInput

@@ -25,7 +25,7 @@ class QuestionContainer extends Component {
         return (
             <div>
                 {questions}
-                <AnswerInput ref="extra"/>
+                <AnswerInput type="extra"/>
             </div>);
     }
 

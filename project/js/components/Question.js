@@ -24,12 +24,16 @@ class Question extends Component {
 
     render() {
         if (this.state.lowRating) {
-            let ref = 'question_' + this.props.qnNumber;
+            //let ref = 'question_' + this.props.qnNumber;
+            let inputProps = {
+                qnNumber: this.props.qnNumber,
+                type: 'question'
+            };
             return (
                 <div>
                     {this.props.question}
                     <Rating qnNumber={this.props.qnNumber}/>
-                    <AnswerInput qnNumber={this.props.qnNumber} ref={ref}/>
+                    <AnswerInput {...inputProps}/>
                 </div>
             );
         } else {

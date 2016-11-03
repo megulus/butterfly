@@ -10,7 +10,7 @@ class MoodDisplay extends Component {
         this.state = {
             moodUnset: Store.getMood() === null
         };
-        Store.addListener('change', () => {
+        Store.addListener('moodchange', () => {
             this.setState({
                 moodUnset: Store.getMood() === null
             })

@@ -1,0 +1,21 @@
+.button-box {
+    display: inline-block;
+}
+
+.btnActive {
+    background-image: url('./images/ButtonActive.png');
+    display: inline-block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 200px;
+    height: 48px;
+}
+
+.btnInactive {
+    background-image: url('./images/ButtonInactive.png');
+    display: inline-block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 200px;
+    height: 48px;
+}

@@ -9,7 +9,7 @@ class Rating extends Component {
             rating: Store.getRating(this.props.qnNumber),
             tmpRating: Store.getRating(this.props.qnNumber)
         };
-        Store.addListener('change', () => {
+        Store.addListener('ratingset', () => {
             this.setState({
                 rating: Store.getRating(this.props.qnNumber),
                 tmpRating: Store.getRating(this.props.qnNumber)

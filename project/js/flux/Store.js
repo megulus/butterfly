@@ -3,6 +3,7 @@ import {EventEmitter} from 'fbemitter';
 
 let currentMood = null;  // why is this redundant?
 let moodText;
+let canSubmit = false;
 
 const availableMoods = {
     1: 'Oops',
@@ -33,16 +34,18 @@ const emitter = new EventEmitter();
 const Store = {
 
     init(v) {
+        userAnswers['questions'] = {};
         currentMood = v;
         moodText = availableMoods[v];
         this.shuffle(questions);
         let count = 0;
         for (var item of questions) {
             count += 1;
-            userAnswers[count] = {};
-            userAnswers[count]['question'] = item;
-            userAnswers[count]['answer'] = null;
-            userAnswers[count]['rating'] = null;
+            userAnswers['questions'][count] = {};
+            userAnswers['questions'][count]['question'] = item;
+            userAnswers['questions'][count]['answer'] = null;
+            userAnswers['questions'][count]['rating'] = null;
+            userAnswers['additional'] = null;
         }
     },
 
@@ -56,7 +59,7 @@ const Store = {
 
     unsetMood() {
         currentMood = null;
-        emitter.emit('change');
+        emitter.emit('moodchange');
     },
 
     getMoodClass({mood}={}) {
@@ -76,21 +79,70 @@ const Store = {
 
     setMood(newMood) {
         currentMood = newMood;
-        emitter.emit('change');
+        emitter.emit('moodchange');
+        this.allRequiredInputSet();
     },
 
     getRating(qnNumber) {
-        return userAnswers[qnNumber]['rating'];
+        return userAnswers['questions'][qnNumber]['rating'];
     },
 
     setRating(qnNumber, newRating) {
-        userAnswers[qnNumber]['rating'] = newRating;
-        emitter.emit('change');
+        userAnswers['questions'][qnNumber]['rating'] = newRating;
+        emitter.emit('ratingset');
+        this.allRequiredInputSet();
+    },
 
+    setAnswer(qnNumber, answer) {
+        userAnswers['questions'][qnNumber]['answer'] = answer;
+    },
+
+    setAdditional(answer) {
+        userAnswers['additional'] = answer;
+    },
+
+    userCanSubmit() {
+        return canSubmit;
+    },
+
+    allRequiredInputSet() {
+        if (!currentMood) {
+            return false;
+        }
+        for (let i = 1; i <= questions.length; i++) {
+            if (!userAnswers['questions'][i]['rating']) {
+                return false;
+            }
+        }
+        canSubmit = true;
+        this.showAllUserInput();
+        emitter.emit('requiredinputset');
+        return true;
     },
 
     addListener(eventType, fn) {
         emitter.addListener(eventType, fn);
+    },
+
+    // TEMPORARY TODO: get rid of this
+    showAllUserInput() {
+        console.log('mood: ' + currentMood);
+        console.log('question 1: ' + userAnswers['questions'][1]['question']);
+        console.log('q1 rating : ' + userAnswers['questions'][1]['rating']);
+        console.log('q1 answer: ' + userAnswers['questions'][1]['answer']);
+        console.log('question 2: ' + userAnswers['questions'][2]['question']);
+        console.log('q2 rating : ' + userAnswers['questions'][2]['rating']);
+        console.log('q2 answer: ' + userAnswers['questions'][2]['answer']);
+        console.log('question 3: ' + userAnswers['questions'][3]['question']);
+        console.log('q3 rating : ' + userAnswers['questions'][3]['rating']);
+        console.log('q3 answer: ' + userAnswers['questions'][3]['answer']);
+        console.log('question 4: ' + userAnswers['questions'][4]['question']);
+        console.log('q4 rating : ' + userAnswers['questions'][4]['rating']);
+        console.log('q4 answer: ' + userAnswers['questions'][4]['answer']);
+        console.log('question 5: ' + userAnswers['questions'][5]['question']);
+        console.log('q5 rating : ' + userAnswers['questions'][5]['rating']);
+        console.log('q5 answer: ' + userAnswers['questions'][5]['answer']);
+        console.log('additional: ' + userAnswers['additional']);
     },
 
     shuffle(array) {

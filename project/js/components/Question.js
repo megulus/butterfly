@@ -12,7 +12,7 @@ class Question extends Component {
                 ? Store.getRating(this.props.qnNumber) <= 2
                 : null
         };
-        Store.addListener('change', () => {
+        Store.addListener('ratingset', () => {
             this.setState({
                 lowRating: Store.getRating(this.props.qnNumber)
                     ? Store.getRating(this.props.qnNumber) <= 2

@@ -4,6 +4,7 @@ import {EventEmitter} from 'fbemitter';
 let currentMood = null;  // why is this redundant?
 let moodText;
 let canSubmit = false;
+let submitted = false;
 
 const availableMoods = {
     1: 'Oops',
@@ -47,6 +48,17 @@ const Store = {
             userAnswers['questions'][count]['rating'] = null;
             userAnswers['additional'] = null;
         }
+    },
+
+    isSubmitted() {
+        return submitted;
+    },
+
+    saveData() {
+        // ultimately, this should write to server
+        this.showAllUserInput();
+        submitted = true;
+        emitter.emit('submitted');
     },
 
     getMood() {
@@ -115,7 +127,6 @@ const Store = {
             }
         }
         canSubmit = true;
-        this.showAllUserInput();
         emitter.emit('requiredinputset');
         return true;
     },

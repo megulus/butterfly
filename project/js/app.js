@@ -1,11 +1,10 @@
 'use strict';
 
-import Logo from './components/Logo';
-import MoodDisplay from './components/MoodDisplay';
-import QuestionContainer from './components/QuestionContainer';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Store from './flux/Store';
+import AppView from './components/AppView';
+
 
 
 function getUrlParam(search) {
@@ -24,18 +23,7 @@ Store.init(v);
 
 
 ReactDOM.render(
-    <div className="container">
-        <div className="app-header row">
-            <div className="col-md-1"><Logo /></div>
-            <div className="col-md-10 h4">Butterfly Inc.</div>
-        </div>
-        <div className="row">
-            <MoodDisplay />
-        </div>
-        <div className="row">
-            <QuestionContainer />
-        </div>
-    </div>,
+    <AppView />,
     document.getElementById('app')
 );
 

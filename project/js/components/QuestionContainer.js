@@ -1,15 +1,18 @@
 import React, {Component, PropTypes} from 'react';
 import Store from '../flux/Store';
 import Question from './Question';
-import Rating from './Rating';
 import AnswerInput from './AnswerInput';
 import Button from './Button';
-import classNames from 'classnames';
+
 
 class QuestionContainer extends Component {
 
     constructor() {
         super();
+    }
+
+    submit() {
+        Store.saveData();
     }
 
     render() {
@@ -28,7 +31,7 @@ class QuestionContainer extends Component {
             <div>
                 {questions}
                 <div className="row"><AnswerInput type="extra"/></div>
-                <div className="row"><Button /></div>
+                <div onClick={this.submit.bind(this)} className="row"><Button /></div>
             </div>);
     }
 }

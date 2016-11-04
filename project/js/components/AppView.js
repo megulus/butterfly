@@ -1,0 +1,64 @@
+import React, {Component, PropTypes} from 'react';
+import Store from '../flux/Store';
+import MoodDisplay from './MoodDisplay';
+import QuestionContainer from './QuestionContainer';
+import Footer from './Footer';
+import Logo from './Logo';
+import Submitted from './Submitted';
+
+class AppView extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            submitted: Store.isSubmitted()
+        };
+        Store.addListener('submitted', () => {
+            this.setState({
+                submitted: Store.isSubmitted()
+            })
+        })
+    }
+
+    render() {
+        let header = (
+            <div className="app-header row">
+                <div className="col-md-1"><Logo /></div>
+                <div className="col-md-10 h4">Butterfly Inc.</div>
+            </div>
+        );
+        let footer = (
+            <div className="row">
+                <Footer />
+            </div>
+        );
+        if (!this.state.submitted) {
+            return (
+                <div className="container">
+                    {header}
+                    <div className="row">
+                        <MoodDisplay/>
+                    </div>
+                    <div className="row">
+                        <QuestionContainer/>
+                    </div>
+                    {footer}
+                </div>
+            );
+        } else {
+            return (
+                <div className="container">
+                    {header}
+                    <div className="row">
+                        <Submitted/>
+                    </div>
+                    {footer}
+                </div>
+            );
+        }
+    }
+
+}
+
+
+export default AppView

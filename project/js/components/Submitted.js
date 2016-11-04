@@ -1,9 +1,15 @@
 import React, {Component, PropTypes} from 'react';
-import Store from '../flux/Store';
 
 class Submitted extends Component {
 
-
+    render() {
+        return (
+            <div>
+                <p>THANK YOU FOR THE EXTRA FEEDBACK</p>
+                <p>Have a nice day!</p>
+            </div>
+        );
+    }
 
 }
 

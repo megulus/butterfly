@@ -23,10 +23,15 @@ class MoodSelector extends Component {
                 </div>)
         }
         return (
-            <div>
-                <div>Did you make a mistake? Please select your correct mood:</div>
-                <div>{smileys}</div>
+            <div className="row">
+                <div className="col-md-4"></div>
+                <div className="col-md-4 white-bkgrnd">
+                    <div>Did you make a mistake? Please select your correct mood:</div>
+                    <div>{smileys}</div>
+                </div>
+                <div className="col-md-4"></div>
             </div>
+
         );
     }
 

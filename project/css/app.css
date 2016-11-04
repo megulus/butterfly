@@ -9,12 +9,17 @@ body {
     vertical-align: middle;
 }
 
-/*.container {
-    width: 100vw;
-}*/
 
 .app-header {
-    margin: 0;
+    /*margin: 0;*/
+    margin: 0 -15px;
     background-color: #006e77;
 }
 
+.med-grn-bkgrnd {
+    background-color: #00828c;
+}
+
+.white-bkgrnd {
+    background-color: #ffffff;
+}

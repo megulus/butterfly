@@ -34,11 +34,12 @@ class AppView extends Component {
         );
         if (!this.state.submitted) {
             return (
-                <div className="container">
+                <div className="container med-grn-bkgrnd">
                     {header}
-                    <div className="row">
+                    <MoodDisplay />
+                    {/*<div className="row">
                         <MoodDisplay/>
-                    </div>
+                    </div>*/}
                     <div className="row">
                         <QuestionContainer/>
                     </div>

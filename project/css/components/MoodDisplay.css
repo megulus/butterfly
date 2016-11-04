@@ -4,8 +4,14 @@
     width: 125px;
     height: 100px;
     padding: 0;
+    margin: 20px 0;
 }
 
 .smiley-box-sm {
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.mood-selector-box {
     display: inline-block;
 }

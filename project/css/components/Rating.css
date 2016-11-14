@@ -17,31 +17,29 @@
     position: relative;
     width: 2.1em;
     height: 2.1em;
-    /*margin-left: 15px;
-    margin-right: 15px;*/
-    margin: 0 15px -6px;
+    margin: 0 20.5px -6px;
 }
 
 .star-box:first-of-type {
-    margin-left: 5px;
+    margin-left: -2px;
 }
 
 .star-box:last-of-type {
-    margin-right: 5px;
+    margin-right: 6px;
 }
 
 .star:before {
     content: '\2605';
     position: absolute;
     top: 5px;
-    left: 8px;
+    left: 9px;
 }
 
 .RatingTmp:before {
     color: #757575;
     content: '\2605';
     top: 5px;
-    left: 8px;
+    left: 9px;
     padding: 1px;
     position: absolute;
 }
@@ -50,7 +48,7 @@
     color: #ffffff;
     content: '\2605';
     top: 5px;
-    left: 8px;
+    left: 9px;
     padding: 1px;
     position: absolute;
 }
@@ -59,7 +57,7 @@
     color: #c3c3c3;
     content: '\2605';
     top: 5px;
-    left: 8px;
+    left: 9px;
     padding: 1px;
     position: absolute;
 }

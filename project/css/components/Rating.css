@@ -2,22 +2,76 @@
 
 .Rating {
     cursor: pointer;
-    display: inline-block;
+    display: block;
     white-space: nowrap;
-    font-size: 28px;
+    font-size: 18px;
+    border: 1px solid #e2e2e2;
+    -webkit-border-radius: 22px;
+    -moz-border-radius: 22px;
+    border-radius: 22px;
 }
 
-.Rating > span {
-    color: grey;
+.star-box {
+    color: #c3c3c3;
     display: inline-block;
     position: relative;
-    width: 1.1em;
+    width: 2.1em;
+    height: 2.1em;
+    /*margin-left: 15px;
+    margin-right: 15px;*/
+    margin: 0 15px -6px;
 }
 
-.Rating .RatingOn:before {
-    color: gold;
+.star-box:first-of-type {
+    margin-left: 5px;
+}
+
+.star-box:last-of-type {
+    margin-right: 5px;
+}
+
+.star:before {
     content: '\2605';
-    left: 0;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+}
+
+.RatingTmp:before {
+    color: #757575;
+    content: '\2605';
+    top: 5px;
+    left: 8px;
     padding: 1px;
     position: absolute;
+}
+
+.RatingOn:before {
+    color: #ffffff;
+    content: '\2605';
+    top: 5px;
+    left: 8px;
+    padding: 1px;
+    position: absolute;
+}
+
+.RatingOnTmp:before {
+    color: #c3c3c3;
+    content: '\2605';
+    top: 5px;
+    left: 8px;
+    padding: 1px;
+    position: absolute;
+}
+
+.star-selected-box {
+    background-color: #ffda43;
+    display: inline-block;
+    position: relative;
+    width: 2.1em;
+    height: 2.1em;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 1px solid #f4cc43;
 }

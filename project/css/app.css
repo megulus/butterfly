@@ -9,6 +9,22 @@ body {
     vertical-align: middle;
 }
 
+textarea {
+    width: 95%;
+    height: 50px;
+    border-radius: 3px;
+    font-size: 10px;
+    text-align: center;
+    border: 1px solid #c3c3c3;
+}
+
+
+/*input::-moz-placeholder,
+input:-ms-input-placeholder,
+input::-webkit-input-placeholder,
+input:-moz-placeholder {
+    text-wrap: normal;
+}*/
 
 .app-header {
     /*margin: 0;*/
@@ -16,10 +32,41 @@ body {
     background-color: #006e77;
 }
 
+.lt-grn-bkgrnd {
+    background-color: #00e5cf;
+}
+
 .med-grn-bkgrnd {
     background-color: #00828c;
 }
 
+.dark-grn-bkgrnd {
+    background-color: #006e77;
+}
+
 .white-bkgrnd {
     background-color: #ffffff;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+.lt-grn-text {
+    color: #00e5cf;
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.rounded-corners {
+    -webkit-border-radius:3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.rounded-corners-top {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }

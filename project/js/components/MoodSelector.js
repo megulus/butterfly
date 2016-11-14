@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import Smiley from './Smiley';
 import Store from '../flux/Store';
+import classNames from 'classnames';
 
 
 class MoodSelector extends Component {
@@ -25,11 +26,10 @@ class MoodSelector extends Component {
         return (
             <div className="row">
                 <div className="col-md-4"></div>
-                <div className="col-md-4 white-bkgrnd">
+                <div className={classNames("col-md-4", "white-bkgrnd", "mood-selector-box", "rounded-corners")}>
                     <div>Did you make a mistake? Please select your correct mood:</div>
                     <div>{smileys}</div>
                 </div>
-                <div className="col-md-4"></div>
             </div>
 
         );

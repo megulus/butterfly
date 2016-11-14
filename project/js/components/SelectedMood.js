@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Store from '../flux/Store';
 import Smiley from './Smiley';
 import Edit from './Edit';
+import classNames from 'classnames';
 
 class SelectedMood extends Component {
 
@@ -21,8 +22,8 @@ class SelectedMood extends Component {
                     <Smiley {...smileyProps} />
                     <div onClick={this.unsetMood.bind(this)}><Edit /></div>
                 </div>
-                <div>{moodText}</div>
-                <div>Thank you for your feedback</div>
+                <p className="white-text">{moodText}</p>
+                <p className={classNames("lt-grn-text", "small-text")}>THANK YOU FOR YOUR FEEDBACK</p>
             </div>
         );
     }

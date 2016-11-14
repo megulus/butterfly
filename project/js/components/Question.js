@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Rating from './Rating';
 import AnswerInput from './AnswerInput';
 import Store from '../flux/Store';
+import classNames from 'classnames';
 
 class Question extends Component {
 
@@ -30,15 +31,16 @@ class Question extends Component {
                 type: 'question'
             };
             return (
-                <div>
-                    {this.props.question}
+                <div className={classNames("question", "white-bkgrnd")}>
+                    <p>{this.props.question}</p>
                     <Rating qnNumber={this.props.qnNumber}/>
+                    <p>Disagree<span></span>Agree</p>
                     <AnswerInput {...inputProps}/>
                 </div>
             );
         } else {
             return (
-                <div>
+                <div className={classNames("question", "white-bkgrnd")}>
                     {this.props.question}
                     <Rating qnNumber={this.props.qnNumber}/>
                 </div>

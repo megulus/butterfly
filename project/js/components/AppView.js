@@ -5,6 +5,7 @@ import QuestionContainer from './QuestionContainer';
 import Footer from './Footer';
 import Logo from './Logo';
 import Submitted from './Submitted';
+import classNames from 'classnames';
 
 class AppView extends Component {
 
@@ -24,7 +25,7 @@ class AppView extends Component {
         let header = (
             <div className="app-header row">
                 <div className="col-md-1"><Logo /></div>
-                <div className="col-md-10 h4">Butterfly Inc.</div>
+                <div className={classNames("col-md-10", "h4", "white-text")}>Butterfly Inc.</div>
             </div>
         );
         let footer = (
@@ -37,12 +38,7 @@ class AppView extends Component {
                 <div className="container med-grn-bkgrnd">
                     {header}
                     <MoodDisplay />
-                    {/*<div className="row">
-                        <MoodDisplay/>
-                    </div>*/}
-                    <div className="row">
-                        <QuestionContainer/>
-                    </div>
+                    <QuestionContainer/>
                     {footer}
                 </div>
             );

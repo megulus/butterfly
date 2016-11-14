@@ -31,11 +31,20 @@ class AnswerInput extends Component {
             : '';
         //console.log('value: ' + this.state.value);
         return (
-            <input
+            /*<p>
+                <input
                 type="text"
                 placeholder={prompt}
                 onChange={this.handleChange.bind(this)}
                 onBlur={this.setAnswer.bind(this)}/>
+            </p>*/
+            <div>
+                <textarea
+                    placeholder={prompt}
+                    onChange={this.handleChange.bind(this)}
+                    onBlur={this.setAnswer.bind(this)}>
+                </textarea>
+            </div>
         );
     }
 

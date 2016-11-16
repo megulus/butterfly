@@ -25,24 +25,31 @@ class Question extends Component {
 
     render() {
         if (this.state.lowRating) {
-            //let ref = 'question_' + this.props.qnNumber;
+            console.log('lowrating');
             let inputProps = {
                 qnNumber: this.props.qnNumber,
                 type: 'question'
             };
             return (
                 <div className={classNames("question", "white-bkgrnd")}>
-                    <p>{this.props.question}</p>
+                    <div className={classNames('bold', 'dark-grey-text')}>{this.props.question}</div>
                     <Rating qnNumber={this.props.qnNumber}/>
-                    <p>Disagree<span></span>Agree</p>
+                    <div className={classNames('legend', 'small-text', 'lt-grey-text')}>
+                        <span className={classNames('disagree')}>Disagree</span>
+                        <span className={classNames('agree')}>Agree</span>
+                    </div>
                     <AnswerInput {...inputProps}/>
                 </div>
             );
         } else {
             return (
                 <div className={classNames("question", "white-bkgrnd")}>
-                    {this.props.question}
+                    <div className={classNames('bold', 'dark-grey-text')}>{this.props.question}</div>
                     <Rating qnNumber={this.props.qnNumber}/>
+                    <div className={classNames('legend', 'small-text', 'lt-grey-text')}>
+                        <span className={classNames('disagree')}>Disagree</span>
+                        <span className={classNames('agree')}>Agree</span>
+                    </div>
                 </div>
             );
         }

@@ -31,7 +31,6 @@
     -webkit-border-radius: 22px;
     -moz-border-radius: 22px;
     border-radius: 22px;
-    /*overflow: hidden;*/
 }
 
 .highlight-box-3 {
@@ -109,16 +108,9 @@
     position: relative;
     width: 2.1em;
     height: 2.1em;
-    /*margin: 0 18px -6px;*/
 }
 
-/*.star-box:first-of-type {
-    margin-left: -1px;
-}
 
-.star-box:last-of-type {
-    margin-right: 6px;
-}*/
 
 .star:before {
     content: '\2605';

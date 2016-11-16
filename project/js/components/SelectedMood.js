@@ -23,7 +23,7 @@ class SelectedMood extends Component {
                     <div onClick={this.unsetMood.bind(this)}><Edit /></div>
                 </div>
                 <p className="white-text">{moodText}</p>
-                <p className={classNames("lt-grn-text", "small-text")}>THANK YOU FOR YOUR FEEDBACK</p>
+                <p className={classNames("lt-grn-text", "small-text", "light")}>THANK YOU FOR YOUR FEEDBACK</p>
             </div>
         );
     }

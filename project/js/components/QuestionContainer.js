@@ -28,7 +28,7 @@ class QuestionContainer extends Component {
             );
         }
         return (
-            <div className="row">
+            <div className={classNames('row', 'bottom-spacer')}>
                 <div className="col-md-4"></div>
                 <div className={classNames("col-md-4", "dark-grn-bkgrnd", "qn-box", "rounded-corners")}>
                     <div className={classNames("banner", "med-grn-bkgrnd")}>
@@ -48,7 +48,7 @@ class QuestionContainer extends Component {
                     </div>
                     {questions}
                     <div className={classNames("row", "question", "lt-grn-bkgrnd")}>
-                        <p>Anything to add?</p>
+                        <p className={classNames('bold', 'white-text')}>Anything to add?</p>
                         <AnswerInput type="extra"/>
                     </div>
                     <div onClick={this.submit.bind(this)} className="row">

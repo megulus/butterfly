@@ -10,7 +10,7 @@ class Rating extends Component {
         this.state = {
             rating: Store.getRating(this.props.qnNumber),
             tmpRating: null,
-            copyRating: null,
+            //copyRating: null,
         };
         /*Store.addListener('ratingset', () => {
          this.setState({
@@ -43,7 +43,7 @@ class Rating extends Component {
         // on mouse out, go back to real rating
         // experiment: unset tmpRating TODO: get rid of this comment
         //this.setTemp(this.state.rating);
-        console.log('reset ' + this.state.copyRating);
+        //console.log('reset ' + this.state.copyRating);
         this.setState({
             //rating: this.state.copyRating,
             tmpRating: null,
@@ -84,11 +84,11 @@ class Rating extends Component {
     }
 
 
-    componentDidUpdate() {
+    /*componentDidUpdate() {
         console.log('\nrating: ' + this.state.rating);
         console.log('temp: ' + this.state.tmpRating);
         console.log('copy: ' + this.state.copyRating);
-    }
+    }*/
 
     render() {
         const stars = [];
@@ -111,9 +111,12 @@ class Rating extends Component {
             );
         }
         return (
-            <div className={classNames('Rating')}>
-                {stars}
+            <div>
+                <div className={classNames('Rating')}>
+                    {stars}
+                </div>
             </div>
+
         );
     }
 

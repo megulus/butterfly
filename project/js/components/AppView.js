@@ -23,7 +23,7 @@ class AppView extends Component {
 
     render() {
         let header = (
-            <div className="app-header row">
+            <div className={classNames('app-header', 'row', 'bottom-spacer')}>
                 <div className="col-md-1"><Logo /></div>
                 <div className={classNames("col-md-10", "h4", "white-text")}>Butterfly Inc.</div>
             </div>
@@ -35,7 +35,7 @@ class AppView extends Component {
         );
         if (!this.state.submitted) {
             return (
-                <div className="container med-grn-bkgrnd">
+                <div className={classNames('container', 'med-grn-bkgrnd')}>
                     {header}
                     <MoodDisplay />
                     <QuestionContainer/>
@@ -44,7 +44,7 @@ class AppView extends Component {
             );
         } else {
             return (
-                <div className="container">
+                <div className={classNames('container', 'med-grn-bkgrnd')}>
                     {header}
                     <div className="row">
                         <Submitted/>

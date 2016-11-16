@@ -1,13 +1,16 @@
 import React, {Component, PropTypes} from 'react';
+import classNames from 'classnames';
+
 
 class Footer extends Component {
 
     render() {
         return (
-            <div>
-                <p>Buttefly. Your team's happiness manager.</p>
-                <p>&copy; 2016 AnonyMessenger, Inc.</p>
-                <a href="https://butterfly.ai">butterfly.ai</a>
+            <div className="bottom-spacer">
+                <p className={classNames('white-text', 'small-text', 'light')}>
+                    Butterfly. Your team's happiness manager.<br/>&copy; 2016 AnonyMessenger, Inc.
+                </p>
+                <a className={classNames("lt-grn-text", "small-text")} href="https://butterfly.ai">butterfly.ai</a>
             </div>
         );
     }

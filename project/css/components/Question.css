@@ -2,3 +2,21 @@
     margin: 5px 5px;
     padding: 10px 15px;
 }
+
+.legend {
+    position: relative;
+    height: 20px;
+    width: 350px;
+}
+
+.agree {
+    position: absolute;
+    top: 10px;
+    left: 320px;
+}
+
+.disagree {
+    position: absolute;
+    top: 10px;
+    left: 3px;
+}

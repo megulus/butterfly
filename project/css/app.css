@@ -16,18 +16,12 @@ textarea {
     font-size: 10px;
     text-align: center;
     border: 1px solid #c3c3c3;
+    resize: none;
+    margin-top: 10px;
 }
 
 
-/*input::-moz-placeholder,
-input:-ms-input-placeholder,
-input::-webkit-input-placeholder,
-input:-moz-placeholder {
-    text-wrap: normal;
-}*/
-
 .app-header {
-    /*margin: 0;*/
     margin: 0 -15px;
     background-color: #006e77;
 }
@@ -56,8 +50,28 @@ input:-moz-placeholder {
     color: #00e5cf;
 }
 
+.lt-grey-text {
+    color: #c3c3c3;
+}
+
+.dark-grey-text {
+    color: #474747;
+}
+
 .small-text {
-    font-size: 12px;
+    font-size: 11px;
+}
+
+.smaller-text {
+    font-size: 9px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.light {
+    font-weight: 200;
 }
 
 .rounded-corners {
@@ -69,4 +83,16 @@ input:-moz-placeholder {
 .rounded-corners-top {
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
+}
+
+.top-spacer {
+    margin-top: 15px;
+}
+
+.bottom-spacer {
+    margin-bottom: 15px;
+}
+
+.submitted {
+    min-height: 80vh;
 }

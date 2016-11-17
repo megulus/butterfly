@@ -53,10 +53,10 @@ class Rating extends Component {
 
     getClass(i) {
         if (this.state.tmpRating && this.state.rating) {
-            if (i <= this.state.rating && i <= this.state.tmpRating) {
-                return 'RatingOnTmp star-selected-box';
-            } else if (i > this.state.rating && i <= this.state.tmpRating) {
-                return 'RatingTmp'
+            if (i === this.state.tmpRating) {
+                return 'RatingTmp star-selected-box';
+            } else if (i < this.state.tmpRating) {
+                return 'RatingOnTmp';
             } else {
                 return null;
             }
@@ -66,9 +66,9 @@ class Rating extends Component {
                 : null;
         } else if (this.state.rating) {
             if (i < this.state.rating) {
-                return 'RatingOn'
+                return 'RatingOn';
             } else if (i === this.state.rating) {
-                return 'RatingSelected star-selected-box'
+                return 'RatingSelected star-selected-box';
             } else {
                 return null;
             }
@@ -78,9 +78,17 @@ class Rating extends Component {
     }
 
     getHighlightClass(i) {
-        return (this.state.rating && i <= this.state.rating)
-            ? 'highlight-box-' + i
-            : null;
+        if (this.state.rating && !this.state.tmpRating) {
+            return i === this.state.rating
+                ? 'highlight-box-' + i
+                : null;
+        } else if (this.state.rating && this.state.tmpRating) {
+            return i <= this.state.tmpRating
+                ? 'highlight-box-' + i
+                : null;
+        } else {
+            return null;
+        }
     }
 
 

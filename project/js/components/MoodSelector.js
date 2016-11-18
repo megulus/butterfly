@@ -27,7 +27,7 @@ class MoodSelector extends Component {
             <div className="row">
                 <div className="col-md-4"></div>
                 <div className={classNames("col-md-4", "white-bkgrnd", "mood-selector-box", "rounded-corners")}>
-                    <div>Did you make a mistake? Please select your correct mood:</div>
+                    <div className={classNames('med-grey-text', 'bold', 'top-spacer')}>Did you make a mistake? Please select your correct mood:</div>
                     <div>{smileys}</div>
                 </div>
             </div>

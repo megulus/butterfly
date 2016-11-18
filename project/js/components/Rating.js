@@ -10,23 +10,13 @@ class Rating extends Component {
         this.state = {
             rating: Store.getRating(this.props.qnNumber),
             tmpRating: null,
-            //copyRating: null,
         };
-        /*Store.addListener('ratingset', () => {
-         this.setState({
-         rating: Store.getRating(this.props.qnNumber),
-         tmpRating: Store.getRating(this.props.qnNumber)
-         })
-         });*/
     }
 
     setTemp(rating) {
         // on mouse over
-        // experiment: set tmpRating, unset rating TODO: get rid of this comment
         this.setState({
             tmpRating: rating,
-            //copyRating: this.state.rating,
-            //rating: null,
         });
     }
 
@@ -35,19 +25,13 @@ class Rating extends Component {
         this.setState({
             tmpRating: null,
             rating: rating,
-            //copyRating: rating
         });
     }
 
     reset() {
         // on mouse out, go back to real rating
-        // experiment: unset tmpRating TODO: get rid of this comment
-        //this.setTemp(this.state.rating);
-        //console.log('reset ' + this.state.copyRating);
         this.setState({
-            //rating: this.state.copyRating,
             tmpRating: null,
-            //copyRating: null
         });
     }
 
@@ -107,7 +91,6 @@ class Rating extends Component {
                     <div className={this.getHighlightClass(i)}></div>
                     <div className={starOverboxName}>
                         <span
-                            //className={i <= this.state.tmpRating ? 'RatingOn' : null}
                             className={classNames(this.getClass(i), 'star-box', 'star')}
                             key={i}
                             onClick={this.setRating.bind(this, i)}

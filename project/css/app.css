@@ -24,6 +24,39 @@ textarea {
 .app-header {
     margin: 0 -15px;
     background-color: #006e77;
+    position: relative;
+    height: 44px;
+}
+
+@media screen and (min-width: 980px) {
+    .banner-text {
+        right: 25%;
+    }
+}
+
+@media screen and (min-width: 650px) and (max-width: 979px) {
+    .banner-text {
+        right: 42%;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 649px) {
+    .banner-text {
+        right: 40%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .banner-text {
+        right: 37.5%;
+    }
+}
+
+.banner-text {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 25%;
 }
 
 .lt-grn-bkgrnd {
@@ -56,6 +89,10 @@ textarea {
 
 .dark-grey-text {
     color: #474747;
+}
+
+.med-grey-text {
+    color: #7e7e7e;
 }
 
 .small-text {

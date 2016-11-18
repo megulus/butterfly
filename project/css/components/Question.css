@@ -7,17 +7,17 @@
 .legend {
     position: relative;
     height: 20px;
-    width: 350px;
+    width: 100%;
 }
 
 .agree {
     position: absolute;
     top: 10px;
-    left: 320px;
+    right: 0;
 }
 
 .disagree {
     position: absolute;
     top: 10px;
-    left: 3px;
+    left: 0;
 }

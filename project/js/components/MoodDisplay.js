@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Store from '../flux/Store';
 import SelectedMood from './SelectedMood';
 import MoodSelector from './MoodSelector';
+import classNames from 'classnames';
 
 class MoodDisplay extends Component {
 
@@ -20,7 +21,13 @@ class MoodDisplay extends Component {
     render() {
         if (!this.state.moodUnset) {
             return (
-                <SelectedMood />
+                <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className={classNames('col-md-4')}>
+                        <SelectedMood />
+                    </div>
+                </div>
+
             );
         } else {
             return (

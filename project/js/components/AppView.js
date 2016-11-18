@@ -24,8 +24,8 @@ class AppView extends Component {
     render() {
         let header = (
             <div className={classNames('app-header', 'row', 'bottom-spacer')}>
-                <div className="col-md-1"><Logo /></div>
-                <div className={classNames("col-md-10", "h4", "white-text")}>Butterfly Inc.</div>
+                <div className="col-md-2"><Logo /></div>
+                <div className={classNames("col-md-6", "h4", "white-text", "banner-text")}>Butterfly Inc.</div>
             </div>
         );
         let footer = (

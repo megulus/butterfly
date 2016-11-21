@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Store from '../flux/Store';
-import classNames from 'classnames';
+
 
 class Button extends Component {
 

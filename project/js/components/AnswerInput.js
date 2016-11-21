@@ -29,15 +29,7 @@ class AnswerInput extends Component {
             ? 'This is where you can express yourself freely.'
             + ' Your answers will always remain anonymous.'
             : '';
-        //console.log('value: ' + this.state.value);
         return (
-            /*<p>
-                <input
-                type="text"
-                placeholder={prompt}
-                onChange={this.handleChange.bind(this)}
-                onBlur={this.setAnswer.bind(this)}/>
-            </p>*/
             <div>
                 <textarea
                     placeholder={prompt}

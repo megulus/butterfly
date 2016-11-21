@@ -76,11 +76,6 @@ class Rating extends Component {
     }
 
 
-    /*componentDidUpdate() {
-        console.log('\nrating: ' + this.state.rating);
-        console.log('temp: ' + this.state.tmpRating);
-        console.log('copy: ' + this.state.copyRating);
-    }*/
 
     render() {
         const stars = [];

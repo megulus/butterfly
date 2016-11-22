@@ -9,7 +9,10 @@ class MoodDisplay extends Component {
     constructor() {
         super();
         this.state = {
-            moodUnset: Store.getMood() === null
+            moodUnset: Store.getMood() === null,
+            mood: Store.getMood(),
+            moodText: Store.getMoodText(),
+            moodClass: Store.getMoodClass(Store.getMood())
         };
         Store.addListener('moodchange', () => {
             this.setState({
@@ -20,11 +23,15 @@ class MoodDisplay extends Component {
 
     render() {
         if (!this.state.moodUnset) {
+            let selectedProps = {
+                mood: this.state.mood,
+                moodClass: this.state.moodClass
+            };
             return (
                 <div className="row">
                     <div className="col-md-4"></div>
                     <div className={classNames('col-md-4')}>
-                        <SelectedMood />
+                        <SelectedMood {...selectedProps} />
                     </div>
                 </div>
 

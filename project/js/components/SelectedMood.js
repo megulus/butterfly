@@ -12,7 +12,7 @@ class SelectedMood extends Component {
 
     render() {
         const smileyProps = {
-            moodClass: Store.getMoodClass(),
+            moodClass: this.props.moodClass,
             small: false
         };
         const moodText = Store.getMoodText();
@@ -30,6 +30,10 @@ class SelectedMood extends Component {
 
 
 }
+
+SelectedMood.propTypes = {
+    moodClass: PropTypes.string.required
+};
 
 export default SelectedMood
 

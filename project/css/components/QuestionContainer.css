@@ -1,28 +1,4 @@
-.banner {
-    position: relative;
-    height: 35px;
-}
 
-.banner-base {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    padding-top: 2px;
-}
-
-.triangle {
-    background-image: url('./images/Triangle.png');
-    display: block;
-    -webkit-background-size: cover;
-    background-size: cover;
-    width: 16px;
-    height: 12px;
-    position: absolute;
-    top: 3px;
-    left: 47.5%;
-}
 
 .qn-box {
     padding: 0;

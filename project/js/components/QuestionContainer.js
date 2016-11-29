@@ -3,6 +3,7 @@ import Store from '../flux/Store';
 import Question from './Question';
 import AnswerInput from './AnswerInput';
 import Button from './Button';
+import BoxBanner from './BoxBanner';
 import classNames from 'classnames';
 
 class QuestionContainer extends Component {
@@ -31,19 +32,8 @@ class QuestionContainer extends Component {
             <div className={classNames('row', 'bottom-spacer')}>
                 <div className="col-md-4"></div>
                 <div className={classNames("col-md-4", "dark-grn-bkgrnd", "qn-box", "rounded-corners")}>
-                    <div className={classNames("banner", "med-grn-bkgrnd")}>
-                        <div className={classNames("triangle")}></div>
-                        <div
-                            className={classNames(
-                                "banner-base",
-                                "lt-grn-bkgrnd",
-                                "rounded-corners-top",
-                                "small-text",
-                                "white-text")}>
-                            <p>Your answers will always remain anonymous</p>
-                        </div>
-                    </div>
-                    <div className="sub-banner">
+                    <BoxBanner/>
+                     <div className="sub-banner">
                         <p className="lt-grn-text">Do you agree with the following statements:</p>
                     </div>
                     {questions}

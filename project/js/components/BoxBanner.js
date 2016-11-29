@@ -14,7 +14,7 @@ class BoxBanner extends Component {
                         'rounded-corners-top',
                         'small-text',
                         'white-text')}>
-                        <p>Your answers will always rmain anonymous</p>
+                        <p>Your answers will always remain anonymous</p>
                     </div>
                 </div>
             </div>

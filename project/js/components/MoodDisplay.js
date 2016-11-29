@@ -23,15 +23,11 @@ class MoodDisplay extends Component {
 
     render() {
         if (!this.state.moodUnset) {
-            let selectedProps = {
-                mood: this.state.mood,
-                moodClass: this.state.moodClass
-            };
             return (
                 <div className="row">
                     <div className="col-md-4"></div>
                     <div className={classNames('col-md-4')}>
-                        <SelectedMood {...selectedProps} />
+                        <SelectedMood moodClass={this.state.moodClass} />
                     </div>
                 </div>
 

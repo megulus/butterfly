@@ -36,48 +36,32 @@ class Rating extends Component {
     }
 
     getClass(i) {
-        if (this.state.tmpRating && this.state.rating) {
-            if (i === this.state.tmpRating) {
-                return 'RatingTmp star-selected-box';
-            } else if (i < this.state.tmpRating) {
-                return 'RatingOnTmp';
-            } else {
-                return null;
-            }
-        } else if (this.state.tmpRating) {
-            return (i <= this.state.tmpRating)
-                ? 'RatingTmp'
-                : null;
-        } else if (this.state.rating) {
-            if (i < this.state.rating) {
+        if (this.state.rating) {
+            if (i < this.state.rating && i !== this.state.tmpRating) {
                 return 'RatingOn';
+            } else if (i === this.state.rating && i === this.state.tmpRating) {
+                return 'RatingTmp star-selected-box';
+            } else if (i === this.state.tmpRating) {
+                return 'RatingTmp';
             } else if (i === this.state.rating) {
                 return 'RatingSelected star-selected-box';
-            } else {
-                return null;
             }
         } else {
-            return null;
+            if (i === this.state.tmpRating) {
+                return 'RatingTmp';
+            }
         }
     }
 
     getHighlightClass(i) {
-        if (this.state.rating && !this.state.tmpRating) {
-            return i === this.state.rating
-                ? 'highlight-box-' + i
-                : null;
-        } else if (this.state.rating && this.state.tmpRating) {
-            return i <= this.state.tmpRating
-                ? 'highlight-box-' + i
-                : null;
-        } else {
-            return null;
-        }
-    }
-
+        return i <= this.state.rating
+            ? 'highlight-box-' + i
+            : null;
+     }
 
 
     render() {
+        console.log('rendering');
         const stars = [];
         for (let i = 1; i <= 5; i++) {
             let starOverboxName = 'star-overbox-' + i;
@@ -90,7 +74,8 @@ class Rating extends Component {
                             key={i}
                             onClick={this.setRating.bind(this, i)}
                             onMouseOver={this.setTemp.bind(this, i)}
-                            onMouseOut={this.reset.bind(this)}>{}
+                            onMouseOut={this.reset.bind(this)}
+                        >{}
                         </span>
                     </div>
                 </div>

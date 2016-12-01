@@ -1,63 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <!-- build:css ./css/site.min.css -->
-    <link rel="stylesheet" href="css/style_new.css">
-    <!-- endbuild -->
-    <title>Butterfly</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bundle.css">
+    <title>Butterfly 2</title>
 </head>
 <body>
-<section class="container">
-
-    <header>
-        <div class="row dark-grn-bkgrnd">
-            <div class="col-md-1" id="header-img">
-                <a href="https://support.butterfly.ai" target="_blank">
-                    <img src="images/BG.png">
-                </a>
-            </div>
-            <div class="col-md-10 white-text">
-                <h4>Butterfly Inc.</h4>
-            </div>
-            <div class="col-md-1"></div>
-        </div>
-    </header>
-
-    <section class="row med-grn-bkgrnd">
-        <section class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 mood-selection-container" id="mood-selection"></div>
-            <div class="col-md-4"></div>
-        </section>
-
-        <section class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 qn-box" id="mood-questions"></div>
-            <div class="col-md-4"></div>
-        </section>
-    </section>
-
-    <section class="row footer">
-        <div class="col-md-4"></div>
-        <div class="col-md-4" id="footer-content"></div>
-        <div class="col-md-4"></div>
-    </section>
-
-
-</section>
-
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/underscore/underscore-min.js"></script>
-<script src="bower_components/backbone/backbone-min.js"></script>
-<!-- build:js ./js/site.min.js -->
-<script src="js/models.js"></script>
-<script src="js/views.js"></script>
-<script src="js/app.js"></script>
-<!-- endbuild -->
+    <div id="app"></div>
+<script src="bundle.js"></script>
 </body>
 </html>

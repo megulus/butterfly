@@ -1,4 +1,5 @@
 import {EventEmitter} from 'fbemitter';
+import { Map } from 'immutable';
 
 
 let currentMood = null;  // why is this redundant?
@@ -6,13 +7,22 @@ let moodText;
 let canSubmit = false;
 let submitted = false;
 
-const availableMoods = {
+const availableMoods = Map({
+    1: 'Oops',
+    2: 'Mmmh...',
+    3: 'OK',
+    4: 'Great',
+    5: 'Awesome'
+});
+
+/*const availableMoods = {
     1: 'Oops',
     2: 'Mmmmh...',
     3: 'OK',
     4: 'Great!',
     5: 'Awesome!'
-};
+};*/
+
 const moodClasses = {
     1: 'one',
     2: 'two',

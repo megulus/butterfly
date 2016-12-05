@@ -4,12 +4,13 @@
 project/bower_components/
 node_modules/
 build/
-//project/scratch.html
+
 
 project/old_css
 project/js/old_backbone
 project/old_html
 project/js/flux
+
 
 
 

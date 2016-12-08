@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 class Logo extends Component {
 
     render() {
-        return <div className="Logo"></div>
+        return <a className="Logo" href="http://support.butterfly.ai/">{}</a>
     }
 }
 

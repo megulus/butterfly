@@ -11,6 +11,7 @@ project/js/old_backbone
 project/old_html
 project/js/flux
 project/js/client.js
+project/js/components/temp
 
 
 old_general/package.json

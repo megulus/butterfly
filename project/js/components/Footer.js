@@ -6,12 +6,12 @@ class Footer extends Component {
 
     render() {
         return (
-            <div className="bottom-spacer">
+            <footer className="bottom-spacer">
                 <p className={classNames('white-text', 'small-text', 'light')}>
                     Butterfly. Your team's happiness manager.<br/>&copy; 2016 AnonyMessenger, Inc.
                 </p>
                 <a className={classNames("lt-grn-text", "small-text")} href="https://butterfly.ai">butterfly.ai</a>
-            </div>
+            </footer>
         );
     }
 

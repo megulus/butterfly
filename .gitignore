@@ -10,8 +10,10 @@ project/old_css
 project/js/old_backbone
 project/old_html
 project/js/flux
-project/js/client.js
+#project/js/client.js
 project/js/components/temp
+project/js/temp
+
 
 
 old_general/package.json

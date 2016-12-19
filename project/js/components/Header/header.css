@@ -1,11 +1,11 @@
 .logo {
     background-image: url('./BG.png');
-    display: block;
+    display: inline-block;
     -webkit-background-size: cover;
     background-size: cover;
     height: 36px;
     width: 36px;
-    margin: 4px -10px;
+    margin: 4px 20px;
     vertical-align: middle;
 }
 
@@ -15,3 +15,39 @@
     height: 44px;
     composes: dark-grn-bkgrnd from '../../../css/colors.css';
 }
+
+.headline {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 25%;
+    composes: sans from '../../../css/typography.css';
+    composes: center from '../../../css/typography.css';
+    composes: white-text from '../../../css/colors.css';
+    composes: large-text from '../../../css/typography.css';
+}
+
+@media screen and (min-width: 980px) {
+    .headline {
+        right: 25%;
+    }
+}
+
+@media screen and (min-width: 650px) and (max-width: 979px) {
+    .headline {
+        right: 42%;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 649px) {
+    .headline {
+        right: 40%;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .headline {
+        right: 37.5%;
+    }
+}
+

@@ -1,22 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import logger from 'redux-logger';
 
 
 import Layout from './components/Layout';
-import reducers from './reducers';
+import moodReducer from './reducers/moodReducer';
+import questionsReducer from './reducers/questionsReducer';
 
 
 const app = document.getElementById('app');
 
+const middleware = applyMiddleware(logger());
+
 const store = createStore(
     combineReducers({
-        ...reducers,
+        mood: moodReducer,
+        questions: questionsReducer,
         routing: routerReducer
-    })
+    }),
+    middleware
 );
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -32,13 +38,7 @@ ReactDOM.render(
     app
 );
 
-/*ReactDOM.render(
-    <Router history={hashHistory}>
-        <Route path="/" component={Layout}>
-            <IndexRoute component={Layout}/>
-        </Route>
-    </Router>,
-    app);*/
+
 
 
 

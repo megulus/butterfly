@@ -1,10 +1,12 @@
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
+import styles from './header.css';
 
 class Logo extends Component {
 
     render() {
-        return <a className="Logo" href="http://support.butterfly.ai/">{}</a>
+        return <a className={styles.logo} href="http://support.butterfly.ai/">{}</a>
     }
 }
 

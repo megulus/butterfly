@@ -6,7 +6,7 @@ import styles from './header.css';
 class Logo extends Component {
 
     render() {
-        return <a className={styles.logo} href="http://support.butterfly.ai/">{}</a>
+        return <a className={styles.logo} target="_blank" href="http://support.butterfly.ai/">{}</a>
     }
 }
 

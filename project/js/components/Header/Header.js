@@ -10,7 +10,7 @@ class Header extends Component {
     render() {
         return (
             <header className={classNames(styles.banner, 'row')}>
-                <div classname="col-md-2"><Logo /></div>
+                <div className="col-md-2"><Logo /></div>
                 <div className={classNames(styles.headline, 'col-md-6')}>Butterfly, Inc.</div>
             </header>
         );

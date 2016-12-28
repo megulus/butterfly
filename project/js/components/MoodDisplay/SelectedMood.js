@@ -7,6 +7,8 @@ import Smiley from './Smiley';
 
 import { unsetMood } from '../../actions/moodActions';
 
+import styles from './MoodDisplay.css';
+
 @connect((store) => {
     return {
         mood: store.mood.mood,
@@ -25,15 +27,14 @@ class SelectedMood extends Component {
             moodClass: mood.moodClass,
             moodSet: this.props.moodSet,
         };
-        //const moodText = Store.getMoodText();
         return (
             <div>
-                <div className="smiley-box-lg">
+                <div className={styles.smileyBoxLg}>
                     <Smiley {...smileyProps} />
                     <div onClick={this.unsetMood.bind(this)}><Edit /></div>
                 </div>
-                <p className="white-text">{mood.moodText}</p>
-                <p className={classNames("lt-grn-text", "small-text", "light")}>THANK YOU FOR YOUR FEEDBACK</p>
+                <p className={styles.moodText}>{mood.moodText}</p>
+                <p className={styles.selectedMoodBanner}>THANK YOU FOR YOUR FEEDBACK</p>
             </div>
         );
     }

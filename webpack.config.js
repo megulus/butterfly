@@ -26,7 +26,7 @@ module.exports = {
                         loader: 'css-loader',
                         query: {
                             modules: true,
-                            localIdentName: '[name]__[local}___[hash:base64:5]'
+                            localIdentName: '[name]__[local]___[hash:base64:5]'
                         }
                     }])
                 )
@@ -42,7 +42,10 @@ module.exports = {
         filename: "scripts.min.js"
     },
     plugins: debug ? [
-        new ExtractTextPlugin('styles.css'),
+        new ExtractTextPlugin('styles.css', {
+            allChunks: true,
+            ignoreOrder: true,
+        }),
     ] : [
         new ExtractTextPlugin('styles.css'),
         new webpack.optimize.DedupePlugin(),

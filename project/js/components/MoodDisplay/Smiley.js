@@ -2,23 +2,21 @@
 import classNames from 'classnames';
 import React, { Component, PropTypes } from 'react';
 
+import styles from './MoodDisplay.css';
 
 class Smiley extends Component {
 
     render() {
         const sizeClass = this.props.moodSet
             ? null
-            : 'small';
+            : styles.small;
         return (
-            <div className={classNames(this.props.moodClass, sizeClass)}></div>
+            <div className={classNames(styles.smiley, styles[this.props.moodClass], sizeClass)}></div>
         );
     }
 }
 
-/*const Smiley = props =>
-    props.small
-        ? <div className={classNames(props.moodClass, 'small')}></div>
-        : <div className={classNames(props.moodClass, 'smiley')}></div>;*/
+
 
 
 Smiley.propTypes = {

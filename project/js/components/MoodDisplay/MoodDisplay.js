@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import MoodSelector from './MoodSelector';
 import SelectedMood from './SelectedMood';
 
+import styles from './MoodDisplay.css';
+
 @connect((store) => {
     return {
         moodClass: store.mood.mood.moodClass,
@@ -21,7 +23,7 @@ class MoodDisplay extends Component {
             ? (
             <div className="row">
                 <div className="col-md-4"></div>
-                <div className={classNames('col-md-4')}>
+                <div className={classNames('col-md-4', styles.moodDisplayContnr)}>
                     <SelectedMood moodClass={this.props.moodClass}/>
                 </div>
             </div>)

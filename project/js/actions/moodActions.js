@@ -1,6 +1,6 @@
 
 export function setMood(mood) {
-    const availableMoods = {
+    /*const availableMoods = {
         1: {
             moodNum: 1,
             moodClass: 'one',
@@ -26,10 +26,10 @@ export function setMood(mood) {
             moodClass: 'five',
             moodText: 'Awesome!',
         },
-    };
+    };*/
     return {
         type: 'SET_MOOD',
-        payload: availableMoods[mood],
+        payload: mood,
     }
 }
 

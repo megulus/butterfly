@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setMood } from '../actions/moodActions';
+import { setMood } from '../../actions/moodActions';
 
-import Footer from './Footer';
-import Header from './Header/Header';
-import MoodDisplay from './MoodDisplay/MoodDisplay';
-import Submitted from './Submitted/Submitted';
+import Footer from '../Footer';
+import Header from '../Header/Header';
+import MoodDisplay from '../MoodDisplay/MoodDisplay';
+import Submitted from '../Submitted/Submitted';
+
+import style from './AppView.css';
 
 
 @connect((store) => {
@@ -18,7 +20,7 @@ import Submitted from './Submitted/Submitted';
     }
 })
 
-class Layout extends Component {
+class AppView extends Component {
 
     componentWillMount() {
         const { query } = this.props.location;
@@ -28,14 +30,13 @@ class Layout extends Component {
     }
 
     render() {
-        //const { mood } = this.props;
         const currState  = this.props;
         console.log(currState.submitted);
         const mainContent =  currState.submitted
             ? <Submitted />
             : <MoodDisplay />;
         return (
-            <div>
+            <div className={style.appBackground}>
                 <Header />
                 {mainContent}
                 <Footer />
@@ -44,4 +45,4 @@ class Layout extends Component {
     }
 }
 
-export default Layout
+export default AppView

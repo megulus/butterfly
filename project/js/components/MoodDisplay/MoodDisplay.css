@@ -1,0 +1,115 @@
+.moodDisplayContnr {
+    composes: center from '../../../css/typography.css';
+}
+
+.smileyBoxLg {
+    display: inline-block;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+}
+
+.smileyBoxSm {
+    display: inline-block;
+    margin: 20px 8px;
+}
+
+.smileyBoxSm:first-of-type {
+    margin-left: 0;
+}
+
+.smileyBoxSm:last-of-type {
+    margin-right: 0;
+}
+
+.moodSelectorBox {
+    margin: 10px 0;
+    padding: 0;
+}
+
+.moodText {
+    composes: white-text from '../../../css/colors.css';
+}
+
+.selectedMoodBanner {
+    composes: lt-grn-text from '../../../css/colors.css';
+    composes: small-text from '../../../css/typography.css';
+    composes: light-weight from '../../../css/typography.css';
+}
+
+.smiley {
+    display: block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 100px;
+    width: 97px;
+    vertical-align: middle;
+    position: absolute;
+    z-index: 10;
+}
+
+.small {
+    display: inline-block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 49px;
+    width: 49px;
+    vertical-align: middle;
+}
+
+.one {
+    background-image: url('./images/Smiley1.png');
+}
+
+.two {
+    background-image: url('./images/Smiley2.png');
+}
+
+.three {
+    background-image: url('./images/Smiley3.png');
+}
+
+.four {
+    background-image: url('./images/Smiley4.png');
+}
+
+.five {
+    background-image: url('./images/Smiley5.png');
+}
+
+.one.small {
+    background-image: url('./images/SmallSmiley1.png');
+}
+
+.two.small {
+    background-image: url('./images/SmallSmiley2.png');
+}
+
+.three.small {
+    background-image: url('./images/SmallSmiley3.png');
+}
+
+.four.small {
+    background-image: url('./images/SmallSmiley4.png');
+}
+
+.five.small {
+    background-image: url('./images/SmallSmiley5.png');
+}
+
+.Edit {
+    background-image: url('./images/Edit.png');
+    display: block;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 24px;
+    width: 53px;
+    vertical-align: middle;
+    position: absolute;
+    top: 40px;
+    left: 68px;
+    cursor: pointer;
+}
+
+

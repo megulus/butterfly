@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import Logo from './Logo';
 
-import styles from './header.css';
+import styles from './Header.css';
 
 class Header extends Component {
 

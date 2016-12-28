@@ -8,7 +8,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import logger from 'redux-logger';
 
 
-import Layout from './components/Layout';
+import AppView from './components/AppView/AppView';
 
 import rootReducer from './reducers/index';
 
@@ -24,7 +24,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render(
     <Provider store={store}>
         <Router history={history}>
-            <Route path="/" component={Layout}>
+            <Route path="/" component={AppView}>
 
             </Route>
         </Router>

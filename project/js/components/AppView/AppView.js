@@ -6,6 +6,7 @@ import { setMood } from '../../actions/moodActions';
 import Footer from '../Footer';
 import Header from '../Header/Header';
 import MoodDisplay from '../MoodDisplay/MoodDisplay';
+import QuestionContainer from '../Questions/QuestionContainer';
 import Submitted from '../Submitted/Submitted';
 
 import style from './AppView.css';
@@ -31,7 +32,7 @@ class AppView extends Component {
 
     render() {
         const currState  = this.props;
-        console.log(currState.submitted);
+        //console.log(currState.submitted);
         const mainContent =  currState.submitted
             ? <Submitted />
             : <MoodDisplay />;

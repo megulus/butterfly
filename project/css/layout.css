@@ -16,3 +16,21 @@
 .bottom-spacer {
     margin-bottom: 15px;
 }
+
+.right-spacer-sm {
+    margin-right: 5px;
+}
+
+.left-spacer-sm {
+    margin-left: 5px;
+}
+
+.right-spacer-med {
+    margin-right: 15px;
+}
+
+.left-spacer-med {
+    margin-left: 15px;
+}
+
+

@@ -1,6 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component } from 'react';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 
 import Edit from './Edit';
 import Smiley from './Smiley';
@@ -42,9 +41,7 @@ class SelectedMood extends Component {
 
 }
 
-/*SelectedMood.propTypes = {
-    moodClass: PropTypes.string.required
-};*/
+
 
 export default SelectedMood
 

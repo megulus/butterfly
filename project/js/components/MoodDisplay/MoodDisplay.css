@@ -10,9 +10,10 @@
     padding: 0;
 }
 
+
 .smileyBoxSm {
     display: inline-block;
-    margin: 20px 8px;
+    composes: top-spacer bottom-spacer right-spacer-sm left-spacer-sm from '../../../css/layout.css';
 }
 
 .smileyBoxSm:first-of-type {
@@ -24,8 +25,10 @@
 }
 
 .moodSelectorBox {
-    margin: 10px 0;
-    padding: 0;
+    composes: white-bkgrnd from '../../../css/colors.css';
+    composes: top-spacer bottom-spacer left-spacer-med right-spacer-med from '../../../css/layout.css';
+    composes: rounded-corners from '../../../css/layout.css';
+    composes: center from '../../../css/typography.css';
 }
 
 .moodText {
@@ -38,23 +41,29 @@
     composes: light-weight from '../../../css/typography.css';
 }
 
-.smiley {
+.moodSelectorBanner {
+    composes: med-grey-text from '../../../css/colors.css';
+    composes: top-spacer from '../../../css/layout.css';
+    composes: center from '../../../css/typography.css';
+    composes: bold-weight from '../../../css/typography.css';
+}
+
+.smileyLg {
     display: block;
     -webkit-background-size: cover;
     background-size: cover;
     height: 100px;
-    width: 97px;
+    width: 98px;
     vertical-align: middle;
     position: absolute;
     z-index: 10;
 }
 
-.small {
+.smileySm {
     display: inline-block;
     -webkit-background-size: cover;
-    background-size: cover;
-    height: 49px;
-    width: 49px;
+    height: 75px;
+    width: 75px;
     vertical-align: middle;
 }
 
@@ -78,25 +87,6 @@
     background-image: url('./images/Smiley5.png');
 }
 
-.one.small {
-    background-image: url('./images/SmallSmiley1.png');
-}
-
-.two.small {
-    background-image: url('./images/SmallSmiley2.png');
-}
-
-.three.small {
-    background-image: url('./images/SmallSmiley3.png');
-}
-
-.four.small {
-    background-image: url('./images/SmallSmiley4.png');
-}
-
-.five.small {
-    background-image: url('./images/SmallSmiley5.png');
-}
 
 .Edit {
     background-image: url('./images/Edit.png');

@@ -8,10 +8,10 @@ class Smiley extends Component {
 
     render() {
         const sizeClass = this.props.moodSet
-            ? null
-            : styles.small;
+            ? styles.smileyLg
+            : styles.smileySm;
         return (
-            <div className={classNames(styles.smiley, styles[this.props.moodClass], sizeClass)}></div>
+            <div className={classNames(styles[this.props.moodClass], sizeClass)}></div>
         );
     }
 }
@@ -24,9 +24,6 @@ Smiley.propTypes = {
     small: PropTypes.bool
 };
 
-/*Smiley.defaultProps = {
-    moodClass: 'three',
-    small: false
-};*/
+
 
 export default Smiley

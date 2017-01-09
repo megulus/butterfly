@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {connect} from 'react-redux';
 
 import MoodSelector from './MoodSelector';
 import SelectedMood from './SelectedMood';
@@ -18,16 +18,19 @@ class MoodDisplay extends Component {
 
 
     render() {
-        return this.props.moodSet
-            ? (
+        let moodContent = this.props.moodSet
+            ?   <div className={classNames(styles.moodDisplayContnr)}>
+                    <SelectedMood moodClass={this.props.moodClass} />
+                </div>
+            : <MoodSelector/>;
+        return (
             <div className="row">
                 <div className="col-md-4"></div>
-                <div className={classNames('col-md-4', styles.moodDisplayContnr)}>
-                    <SelectedMood moodClass={this.props.moodClass}/>
+                <div className={'col-md-4'}>
+                    {moodContent}
                 </div>
-            </div>)
-            : (<MoodSelector />);
-
+            </div>
+        );
     }
 }
 

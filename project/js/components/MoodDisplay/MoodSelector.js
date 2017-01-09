@@ -41,7 +41,7 @@ class MoodSelector extends Component {
         return (
             <div className="row">
                 <div className="col-md-4"></div>
-                <div className={classNames("col-md-4", styles.moodSelectorBox)}>
+                <div className={classNames(styles.moodSelectorBox)}>
                     <div className={styles.moodSelectorBanner}>
                         Did you make a mistake? Please select your correct mood:
                     </div>

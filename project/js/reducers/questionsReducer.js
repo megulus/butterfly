@@ -2,7 +2,7 @@ import { fromJS, entries } from 'immutable';
 
 function reducer(state={
     questions: [],
-    /*userRatings: {},*/
+    userRatings: [],
     userAdditionalInput: '',
     allRatingsSet: false,
 }, action) {

@@ -1,19 +1,15 @@
 import React, {Component} from 'react';
-import classNames from 'classnames';
+
+import styles from './Questions.css'
 
 class BoxBanner extends Component {
 
     render() {
         return (
             <div>
-                <div className={classNames('banner', 'med-grn-bkgrnd')}>
-                    <div className="triangle"></div>
-                    <div className={classNames(
-                        'banner-base',
-                        'lt-grn-bkgrnd',
-                        'rounded-corners-top',
-                        'small-text',
-                        'white-text')}>
+                <div className={styles.banner}>
+                    <div className={styles.triangle}></div>
+                    <div className={styles.bannerBase}>
                         <p>Your answers will always remain anonymous</p>
                     </div>
                 </div>

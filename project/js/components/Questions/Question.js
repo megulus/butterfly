@@ -1,46 +1,38 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 
-import AnswerInput from './AnswerInput';
-import Rating from './Rating';
+/*import AnswerInput from './AnswerInput';*/
+/*import Rating from './Rating';*/
 
 
 import classNames from 'classnames';
 
-class Question extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            lowRating: Store.getRating(this.props.qnNumber)
-                ? Store.getRating(this.props.qnNumber) <= 2
-                : null
-        };
-        Store.addListener('ratingset', () => {
-            this.setState({
-                lowRating: Store.getRating(this.props.qnNumber)
-                    ? Store.getRating(this.props.qnNumber) <= 2
-                    : null
-            })
-        });
+@connect((store) => {
+    return {
+        ratings: store.questions.userRatings
     }
+})
+
+class Question extends Component {
 
 
     render() {
+        console.log(this.props);
         let inputProps = {
-            qnNumber: this.props.qnNumber,
+            qnIndex: this.props.qnIndex,
             type: 'question'
         };
         return (
             <div className={classNames("question", "white-bkgrnd")}>
                 <div className={classNames('bold', 'dark-grey-text')}>{this.props.question}</div>
-                <Rating qnNumber={this.props.qnNumber}/>
+                {/*<Rating qnNumber={this.props.qnIndex}/>*/}
                 <div className={classNames('legend', 'small-text', 'lt-grey-text')}>
                     <span className={classNames('disagree')}>Disagree</span>
                     <span className={classNames('agree')}>Agree</span>
                 </div>
-                { this.state.lowRating
-                    ? <AnswerInput {...inputProps} />
+                { this.props.rating <= 2
+                    ? {/*<AnswerInput {...inputProps} />*/}
                     : null}
             </div>
         );
@@ -48,9 +40,9 @@ class Question extends Component {
 
 }
 
-Question.propTypes = {
+/*Question.propTypes = {
     question: PropTypes.string.required,
     qnNumber: PropTypes.number.required
-};
+};*/
 
 export default Question

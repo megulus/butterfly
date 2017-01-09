@@ -1,7 +1,10 @@
 import React, {Component, PropTypes} from 'react';
-import Rating from './Rating';
+
+
 import AnswerInput from './AnswerInput';
-import Store from '../flux/Store';
+import Rating from './Rating';
+
+
 import classNames from 'classnames';
 
 class Question extends Component {

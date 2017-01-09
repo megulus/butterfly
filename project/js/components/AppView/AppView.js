@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { setMood } from '../../actions/moodActions';
+import { setQuestions } from '../../actions/questionsActions';
 
 import Footer from '../Footer';
 import Header from '../Header/Header';
@@ -28,14 +29,19 @@ class AppView extends Component {
         const { v } = query;
         const initialMood = v ? v : 3;
         this.props.dispatch(setMood(initialMood));
+        this.props.dispatch(setQuestions());
     }
 
     render() {
         const currState  = this.props;
         //console.log(currState.submitted);
         const mainContent =  currState.submitted
-            ? <Submitted />
-            : <MoodDisplay />;
+            ?   <Submitted />
+            :   <div>
+                    <MoodDisplay />
+                    <QuestionContainer/>
+                </div>;
+
         return (
             <div className={style.appBackground}>
                 <Header />

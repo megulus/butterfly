@@ -18,7 +18,6 @@ class MoodDisplay extends Component {
 
 
     render() {
-        console.log(this.props);
         return this.props.moodSet
             ? (
             <div className="row">

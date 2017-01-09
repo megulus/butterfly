@@ -1,11 +1,21 @@
+import { fromJS, entries } from 'immutable';
+
 function reducer(state={
     questions: [],
-    userRatings: {},
+    /*userRatings: {},*/
     userAdditionalInput: '',
     allRatingsSet: false,
 }, action) {
 
     switch (action.type) {
+
+        case 'SET_QUESTIONS': {
+            return {
+                ...state,
+                questions: action.payload,
+            }
+        }
+
         case 'SET_RATING': {
             return {
                 ...state,

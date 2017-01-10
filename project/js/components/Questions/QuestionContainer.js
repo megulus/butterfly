@@ -8,7 +8,6 @@ import Question from './Question';
 
 import styles from './Questions.css'
 
-import classNames from 'classnames';
 
 @connect((store) => {
     return {
@@ -32,17 +31,17 @@ class QuestionContainer extends Component {
             );
         });
         return (
-            <div className={classNames('row', 'bottom-spacer')}>
+            <div className='row'>
                 <div className="col-md-4"></div>
-                <div className={classNames("col-md-4")}>
+                <div className="col-md-4">
                     <div className={styles.qnBox}>
                         <BoxBanner/>
-                        <div className="sub-banner">
-                            <p className="lt-grn-text">Do you agree with the following statements:</p>
+                        <div className={styles.subBanner}>
+                            <p>Do you agree with the following statements:</p>
                         </div>
                         {questions}
-                        <div className={classNames("row", "question", "lt-grn-bkgrnd")}>
-                            <p className={classNames('bold', 'white-text')}>Anything to add?</p>
+                        <div className={styles.addlInput}>
+                            <p>Anything to add?</p>
                             {/*<AnswerInput type="extra"/>*/}
                         </div>
                         <div onClick={this.submit.bind(this)} className="row">

@@ -1,4 +1,5 @@
 
+
 export function setQuestions() {
     const availableQuestions = [
         'I am satisfied with my roles and responsibilities.',
@@ -23,5 +24,30 @@ export function setQuestions() {
     return {
         type: 'SET_QUESTIONS',
         payload: shuffled,
+    }
+}
+
+export function setUserRating(qnNumber, rating) {
+    /*userRatings[qnNumber] = rating;*/
+    return {
+        type: 'SET_RATING',
+        payload: [qnNumber, rating],
+    }
+}
+
+export function unsetTmpRating() {
+    return {
+        type: 'UNSET_TMPRATING',
+        payload: {},
+    }
+}
+
+export function setTmpRating(qnNumber, rating) {
+    let tmpRating = {};
+    tmpRating[qnNumber] = rating;
+    console.log(tmpRating);
+    return {
+        type: 'SET_TMPRATING',
+        payload: tmpRating,
     }
 }

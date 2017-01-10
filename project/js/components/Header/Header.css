@@ -10,7 +10,6 @@
 }
 
 .banner {
-    /*margin-left: -15px;*/
     position: relative;
     height: 46px;
     composes: dark-grn-bkgrnd from '../../../css/colors.css';

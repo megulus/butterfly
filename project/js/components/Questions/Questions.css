@@ -48,11 +48,14 @@
     composes: top-spacer-sm bottom-spacer-sm from '../../../css/layout.css';
     composes: right-spacer-sm left-spacer-sm from '../../../css/layout.css';
     composes: top-padding bottom-padding from '../../../css/layout.css';
+    composes: left-padding right-padding from '../../../css/layout.css';
     composes: rounded-corners from '../../../css/layout.css';
+    composes: center from '../../../css/typography.css';
 }
 
 .question {
     composes: white-bkgrnd from '../../../css/colors.css';
+    composes: bold-weight from '../../../css/typography.css';
     composes: box;
 }
 

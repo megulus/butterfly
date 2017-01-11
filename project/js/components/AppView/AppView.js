@@ -17,7 +17,6 @@ import style from './AppView.css';
     return {
         moodSet: store.mood.moodSet,
         mood: store.mood.mood,
-        canSubmit: store.submit.canSubmit,
         submitted: store.submit.submitted,
     }
 })

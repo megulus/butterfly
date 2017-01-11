@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import AnswerInput from './AnswerInput';
 import BoxBanner from './BoxBanner';
-/*import Button from '../Button/Button';*/
+import Button from '../Button/Button';
 import Question from './Question';
 
 import styles from './Questions.css'
@@ -12,6 +12,7 @@ import styles from './Questions.css'
 @connect((store) => {
     return {
         questions: store.questions.questions,
+        canSubmit: store.submit.canSubmit,
     }
 })
 
@@ -30,6 +31,9 @@ class QuestionContainer extends Component {
                 <Question qnIndex={index} question={question} key={index}/>
             );
         });
+        let buttonProps = this.props.canSubmit
+            ? 'active'
+            : null;
         return (
             <div className='row'>
                 <div className="col-md-4"></div>
@@ -45,7 +49,7 @@ class QuestionContainer extends Component {
                             <AnswerInput type="extra"/>
                         </div>
                         <div onClick={this.submit.bind(this)} className="row">
-                            {/*<Button />*/}
+                            <Button active={buttonProps} />
                         </div>
                     </div>
                 </div>

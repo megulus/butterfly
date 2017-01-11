@@ -8,13 +8,13 @@ export default function reducer(state={
         case 'USER_CAN_SUBMIT': {
             return {
                 ...state,
-                canSubmit: true,
+                canSubmit: action.payload,
             }
         }
         case 'USER_CANNOT_SUBMIT': {
             return {
                 ...state,
-                canSubmit: false,
+                canSubmit: action.payload,
             }
         }
     }

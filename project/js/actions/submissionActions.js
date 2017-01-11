@@ -5,12 +5,12 @@ export function checkIfSubmissible() {
         if (state.mood.moodSet && state.questions.allRatingsSet) {
             dispatch({
                 type: 'USER_CAN_SUBMIT',
-                payload: state
+                payload: true
             })
         } else {
             dispatch({
                 type: 'USER_CANNOT_SUBMIT',
-                payload: state
+                payload: false
             })
         }
     }

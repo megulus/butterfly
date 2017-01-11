@@ -1,25 +1,14 @@
 import React, {Component, PropTypes} from 'react';
-import Store from '../flux/Store';
 
+import styles from '../Questions/Questions.css';
 
 class Button extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            active: Store.userCanSubmit()
-        };
-        Store.addListener('requiredinputset', () => {
-            this.setState({
-                active: Store.userCanSubmit()
-            });
-        })
-    }
 
     render() {
-        let btnClass = this.state.active
-            ? 'btnActive'
-            : 'btnInactive';
+        let btnClass = this.props.active
+            ? styles.btnActive
+            : styles.btnInactive;
         return (
             <div className={btnClass}></div>
         );

@@ -28,11 +28,16 @@ function reducer(state={
         case 'SET_RATING': {
             let tempRatings = state.userRatings;
             tempRatings[action.payload[0]] = action.payload[1];
+            let ratingsValues = (Object.values(state.userRatings));
+            let ratingsNull = ratingsValues.filter((value) => {
+                return value === null;
+            });
+            let ratingsSet = ratingsNull.length === 0;
             return {
                 ...state,
                 userRatings: tempRatings,
                 userTmpRatings: {},
-                allRequiredInputSet: Object.keys(state.userRatings).length === state.questions.length,
+                allRatingsSet: ratingsSet,
             }
         }
 

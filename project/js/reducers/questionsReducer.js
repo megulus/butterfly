@@ -9,6 +9,7 @@ function reducer(state={
         3: null,
         4: null,
     },
+    ratingChanges: 0,
     userTmpRatings: {},
     userAnswers: {},
     userAdditionalInput: '',
@@ -34,6 +35,15 @@ function reducer(state={
                 allRequiredInputSet: Object.keys(state.userRatings).length === state.questions.length,
             }
         }
+
+        case 'RATING_CHANGE': {
+            let count = state.ratingChanges + action.payload;
+            return {
+                ...state,
+                ratingChanges: count,
+            }
+        }
+
 
         case 'UNSET_TMPRATING': {
             return {

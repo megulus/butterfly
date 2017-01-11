@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { setUserRating, unsetTmpRating, setTmpRating } from '../../../actions/questionsActions';
+import { setUserRating, unsetTmpRating, setTmpRating, flagLowRating, newLowRating, ratingChange } from '../../../actions/questionsActions';
 
 import styles from '../../Questions/Rating/Rating.css';
 
@@ -24,7 +24,8 @@ class Rating extends Component {
 
     setRating(rating) {
         this.props.dispatch(setUserRating(this.props.qnNumber, rating));
-    }
+        this.props.dispatch(ratingChange());
+     }
 
     reset() {
         // on mouse out, go back to real rating
@@ -60,7 +61,6 @@ class Rating extends Component {
 
 
     render() {
-        console.log('rendering');
         const qnNumber = this.props.qnNumber;
         const stars = [];
         for (let i = 1; i <= 5; i++) {

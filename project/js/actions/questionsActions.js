@@ -28,12 +28,20 @@ export function setQuestions() {
 }
 
 export function setUserRating(qnNumber, rating) {
-    /*userRatings[qnNumber] = rating;*/
     return {
         type: 'SET_RATING',
         payload: [qnNumber, rating],
     }
 }
+
+
+export function ratingChange() {
+    return {
+        type: 'RATING_CHANGE',
+        payload: 1,
+    }
+}
+
 
 export function unsetTmpRating() {
     return {
@@ -42,15 +50,16 @@ export function unsetTmpRating() {
     }
 }
 
+
 export function setTmpRating(qnNumber, rating) {
     let tmpRating = {};
     tmpRating[qnNumber] = rating;
-    console.log(tmpRating);
     return {
         type: 'SET_TMPRATING',
         payload: tmpRating,
     }
 }
+
 
 export function setUserAnswer(qnNumber, answer) {
     return {
@@ -58,6 +67,7 @@ export function setUserAnswer(qnNumber, answer) {
         payload: [qnNumber, answer],
     }
 }
+
 
 export function setAdditionalInput(answer) {
     return {

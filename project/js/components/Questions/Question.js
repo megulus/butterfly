@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { resetLowRating } from '../../actions/questionsActions';
 
 import AnswerInput from './AnswerInput';
 import Rating from './Rating/Rating';
+
 
 import styles from './Questions.css';
 
 
 @connect((store) => {
     return {
-        ratings: store.questions.userRatings
+        ratings: store.questions.userRatings,
+        ratingChanges: store.questions.ratingChanges,
     }
 })
 
 class Question extends Component {
 
 
+
     render() {
+        let rating = this.props.ratings[this.props.qnIndex];
+        let lowRating = rating === 1 || rating === 2;
         let inputProps = {
-            qnNumber: this.props.qnNumber,
+            qnNumber: this.props.qnIndex,
             type: 'question'
         };
         return (
@@ -30,8 +36,8 @@ class Question extends Component {
                     <span className={styles.legendLeft}>Disagree</span>
                     <span className={styles.legendRight}>Agree</span>
                 </div>
-                { this.props.rating <= 2
-                    ? <AnswerInput {...inputProps} />
+                { lowRating
+                    ? <AnswerInput {...inputProps}/>
                     : null}
             </div>
         );

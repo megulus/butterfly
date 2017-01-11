@@ -51,3 +51,17 @@ export function setTmpRating(qnNumber, rating) {
         payload: tmpRating,
     }
 }
+
+export function setUserAnswer(qnNumber, answer) {
+    return {
+        type: 'SET_USER_ANSWER',
+        payload: [qnNumber, answer],
+    }
+}
+
+export function setAdditionalInput(answer) {
+    return {
+        type: 'SET_ADDITIONAL_INPUT',
+        payload: answer,
+    }
+}

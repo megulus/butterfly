@@ -55,6 +55,7 @@
 
 .question {
     composes: white-bkgrnd from '../../../css/colors.css';
+    composes: dark-grey-text from '../../../css/colors.css';
     composes: bold-weight from '../../../css/typography.css';
     composes: box;
 }
@@ -84,4 +85,48 @@
     position: absolute;
     top: 10px;
     left: 0;
+}
+
+textarea {
+    width: 95%;
+    height: 50px;
+    border-radius: 3px;
+    font-size: 10px;
+    text-align: left;
+    border: 1px solid #c3c3c3;
+    resize: none;
+    margin-top: 10px;
+    color: #474747;
+}
+
+textarea::-webkit-input-placeholder {
+    text-align: center;
+}
+
+textarea:-moz-placeholder {
+    text-align: center;
+}
+
+textarea::-moz-placeholder {
+    text-align: center;
+}
+
+textarea:-ms-input-placeholder {
+    text-align: center;
+}
+
+textarea:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-moz-placeholder {
+    color: transparent;
+}
+
+textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+textarea:focus:-ms-input-placeholder {
+    color: transparent;
 }

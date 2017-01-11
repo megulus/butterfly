@@ -1,14 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-/*import AnswerInput from './AnswerInput';*/
+import AnswerInput from './AnswerInput';
 import Rating from './Rating/Rating';
 
 import styles from './Questions.css';
 
-
-import classNames from 'classnames';
 
 @connect((store) => {
     return {
@@ -21,19 +19,19 @@ class Question extends Component {
 
     render() {
         let inputProps = {
-            qnIndex: this.props.qnIndex,
+            qnNumber: this.props.qnNumber,
             type: 'question'
         };
         return (
             <div className={styles.question}>
-                <div className={classNames('bold', 'dark-grey-text')}>{this.props.question}</div>
+                <div>{this.props.question}</div>
                 <Rating qnNumber={this.props.qnIndex}/>
                 <div className={styles.legend}>
                     <span className={styles.legendLeft}>Disagree</span>
                     <span className={styles.legendRight}>Agree</span>
                 </div>
                 { this.props.rating <= 2
-                    ? {/*<AnswerInput {...inputProps} />*/}
+                    ? <AnswerInput {...inputProps} />
                     : null}
             </div>
         );
@@ -41,9 +39,5 @@ class Question extends Component {
 
 }
 
-/*Question.propTypes = {
-    question: PropTypes.string.required,
-    qnNumber: PropTypes.number.required
-};*/
 
 export default Question

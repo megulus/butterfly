@@ -1,26 +1,24 @@
-import React, {Component, PropTypes} from 'react';
-import Store from '../flux/Store';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { setUserAnswer, setAdditionalInput } from '../../actions/questionsActions';
+
+
 
 class AnswerInput extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: ''
-        };
-    }
 
     handleChange(event) {
-        this.setState({
-            value: event.target.value
-        });
+        this.setAnswer(event);
     }
 
-    setAnswer() {
+
+    setAnswer(event) {
+        let value = event.target.value;
         if (this.props.qnNumber) {
-            Store.setAnswer(this.props.qnNumber, this.state.value);
+            this.props.dispatch(setUserAnswer(this.props.qnNumber, value));
         } else {
-            Store.setAdditional(this.state.value);
+            this.props.dispatch(setAdditionalInput(value));
         }
     }
 
@@ -42,9 +40,5 @@ class AnswerInput extends Component {
 
 }
 
-AnswerInput.propTypes = {
-    qnNumber: PropTypes.number,
-    type: PropTypes.string.required
-};
 
-export default AnswerInput
+export default connect()(AnswerInput)

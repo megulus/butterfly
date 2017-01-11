@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-/*import AnswerInput from './AnswerInput';*/
+import AnswerInput from './AnswerInput';
 import BoxBanner from './BoxBanner';
 /*import Button from '../Button/Button';*/
 import Question from './Question';
@@ -42,7 +42,7 @@ class QuestionContainer extends Component {
                         {questions}
                         <div className={styles.addlInput}>
                             <p>Anything to add?</p>
-                            {/*<AnswerInput type="extra"/>*/}
+                            <AnswerInput type="extra"/>
                         </div>
                         <div onClick={this.submit.bind(this)} className="row">
                             {/*<Button />*/}

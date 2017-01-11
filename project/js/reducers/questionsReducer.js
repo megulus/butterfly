@@ -10,6 +10,7 @@ function reducer(state={
         4: null,
     },
     userTmpRatings: {},
+    userAnswers: {},
     userAdditionalInput: '',
     allRatingsSet: false,
 }, action) {
@@ -47,6 +48,21 @@ function reducer(state={
                 userTmpRatings: action.payload,
             }
         }
+
+        case 'SET_USER_ANSWER': {
+            let tempUserAnswer = state.userAnswers;
+            tempUserAnswer[action.payload[0]] = action.payload[1];
+            return {
+                ...state,
+                userAnswers: tempUserAnswer,
+            }
+        }
+
+        case 'SET_ADDITIONAL_INPUT':
+            return {
+                ...state,
+                userAdditionalInput: action.payload,
+            }
     }
 
     return state;

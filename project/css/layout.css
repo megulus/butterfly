@@ -9,6 +9,10 @@
     border-top-left-radius: 3px;
 }
 
+.top-spacer-xlg {
+    margin-top: 30px;
+}
+
 .top-spacer {
     margin-top: 15px;
 }

@@ -1,0 +1,15 @@
+.submitted {
+    min-height: 80vh;
+    composes: white-text from '../../../css/colors.css';
+    composes: top-spacer-xlg from '../../../css/layout.css';
+    composes: bold-weight from '../../../css/typography.css';
+    composes: center from '../../../css/typography.css';
+    composes: large-text from '../../../css/typography.css';
+}
+
+.banner {
+    composes: lt-grn-text from '../../../css/colors.css';
+    composes: med-text from '../../../css/typography.css';
+    composes: light-weight from '../../../css/typography.css';
+}
+

@@ -1,0 +1,12 @@
+.footer {
+    composes: white-text from '../../../css/colors.css';
+    composes: top-spacer from '../../../css/layout.css';
+    composes: center from '../../../css/typography.css';
+    composes: light-weight from '../../../css/typography.css';
+    composes: small-text from '../../../css/typography.css';
+}
+
+.link {
+    composes: lt-grn-text from '../../../css/colors.css';
+    composes: small-text from '../../../css/typography.css';
+}

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setMood } from '../../actions/moodActions';
 import { setQuestions } from '../../actions/questionsActions';
 
-import Footer from '../Footer';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoodDisplay from '../MoodDisplay/MoodDisplay';
 import QuestionContainer from '../Questions/QuestionContainer';

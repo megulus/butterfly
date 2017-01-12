@@ -17,13 +17,13 @@ export function checkIfSubmissible() {
 }
 
 
-export function submitAll() {
+export function submit() {
     return (dispatch, getState) => {
         const state = getState();
-        if (state.canSubmit) {
+        if (state.submit.canSubmit) {
             dispatch({
                 type: 'SUBMIT',
-                payload: state,
+                payload: 'SUBMIT',
             })
         }
     }

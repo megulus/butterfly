@@ -17,6 +17,13 @@ export default function reducer(state={
                 canSubmit: action.payload,
             }
         }
+
+        case 'SUBMIT': {
+            return {
+                ...state,
+                submitted: true,
+            }
+        }
     }
 
     return state;

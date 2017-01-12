@@ -1,6 +1,8 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
+import { submit } from '../../actions/submissionActions';
+
 import AnswerInput from './AnswerInput';
 import BoxBanner from './BoxBanner';
 import Button from '../Button/Button';
@@ -20,7 +22,7 @@ class QuestionContainer extends Component {
 
 
     submit() {
-        /*Store.saveData();*/
+        this.props.dispatch(submit());
     }
 
 

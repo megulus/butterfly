@@ -19,6 +19,10 @@ module.exports = {
                     plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
                 }
             }, {
+                test: /\.scss$/,
+                loader: 'style!css!sass'
+            },
+            {
                 test: /\.css$/,
                 loader: 'style-loader',
             },
@@ -46,6 +50,9 @@ module.exports = {
                     presets: ['react', 'es2015', 'stage-0'],
                     plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
                 }
+            }, {
+                test: /\.scss$/,
+                loader: 'style!css!sass'
             },
             {
                 test: /\.css$/,

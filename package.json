@@ -18,7 +18,8 @@
     "url": "https://github.com/megulus/butterfly/issues"
   },
   "homepage": "https://github.com/megulus/butterfly#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -46,12 +47,12 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
-    "sass-loader": "^4.1.0",
+    "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
+    "susy": "^2.2.12",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-combine-loaders": "^2.0.3",
     "webpack-dev-server": "^1.16.2"
-  },
-  "devDependencies": {}
+  }
 }

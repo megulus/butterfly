@@ -1,25 +1,14 @@
 .idea
 .DS_Store
 
-project/bower_components/
+
 node_modules/
 build/
 
 
-project/old_css
-project/js/old_backbone
-project/old_html
-project/js/flux
-#project/js/client.js
-project/js/components/temp
-project/js/temp
-project/css/components
-project/css/app.css
+project/scss/
+project/scss/app.scss
 
-
-
-
-old_general/package.json
 
 
 

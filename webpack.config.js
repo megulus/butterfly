@@ -12,15 +12,12 @@ module.exports = {
         loaders: [ // development loaders:
             {
                 test: /\.js?$/,
-                exclude: /(node_modules|bower_components|temp|flux|old_backbone)/,
+                exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['react', 'es2015', 'stage-0'],
                     plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy']
                 }
-            }, {
-                test: /\.scss$/,
-                loader: 'style!css!sass'
             },
             {
                 test: /\.css$/,
@@ -30,9 +27,9 @@ module.exports = {
                 test: /\.css$/,
                 loader: 'css-loader',
                 query: {
-                            modules: true,
-                            localIdentName: '[name]__[local]___[hash:base64:5]'
-                        },
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]'
+                },
             },
             {
                 test: /\.png/,
@@ -44,7 +41,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js?$/,
-                exclude: /(node_modules|bower_components|temp|flux|old_backbone)/,
+                exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['react', 'es2015', 'stage-0'],
@@ -58,9 +55,9 @@ module.exports = {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
                 query: {
-                            modules: true,
-                            localIdentName: '[name]__[local]___[hash:base64:5]'
-                        },
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]'
+                },
             },
             {
                 test: /\.png/,

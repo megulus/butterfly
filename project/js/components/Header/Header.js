@@ -9,9 +9,9 @@ class Header extends Component {
 
     render() {
         return (
-            <header className={classNames(styles.banner, 'row')}>
+            <header className={classNames('row', styles.banner)}>
                 <div className="col-md-2"><Logo /></div>
-                <div className={classNames(styles.headline, 'col-md-6')}>Butterfly, Inc.</div>
+                <div className={classNames("col-md-6", styles.headline)}>Butterfly, Inc.</div>
             </header>
         );
     }

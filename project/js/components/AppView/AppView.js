@@ -42,7 +42,7 @@ class AppView extends Component {
                 </div>;
 
         return (
-            <div className={style.appBackground}>
+            <div className={style.appBackground} >
                 <Header />
                 {mainContent}
                 <Footer />
